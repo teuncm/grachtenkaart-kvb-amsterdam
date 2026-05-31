@@ -18,6 +18,7 @@ const FORBIDDEN_WATERWAYS = new Set([
 ]);
 
 let canalsData = null;
+const assetBase = import.meta.env.BASE_URL || "/";
 const DOCK_ICON = L.divIcon({
   html: `
     <div
@@ -39,7 +40,7 @@ const HEADING_INDICATOR_ICON = DOCK_ICON;
 // Create the forbidden icon inline so we can control outline/stroke from JS.
 // Use the existing public/forbidden.svg and add a CSS outline for the marker.
 export const FORBIDDEN_ICON = L.icon({
-  iconUrl: "/forbidden.svg",
+  iconUrl: `${assetBase}forbidden.svg`,
   iconSize: [30, 20],
   className: "forbidden-icon",
 });
@@ -47,7 +48,7 @@ export const FORBIDDEN_ICON = L.icon({
 export async function loadCanals() {
   if (canalsData) return canalsData;
 
-  const res = await fetch("/export.geojson");
+  const res = await fetch(`${assetBase}export.geojson`);
 
   if (!res.ok) {
     throw new Error("Failed to load export.geojson");
