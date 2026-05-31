@@ -1,0 +1,61 @@
+Muntsluis
+Singel
+Heiligewegsluis
+Herengracht
+Keizersgracht
+Prinsengracht
+Singelgracht
+
+Blauwburgwal
+Brouwersgracht
+Leliegracht
+Leidsegracht
+Reguliersgracht
+
+Amstel
+
+Rokin
+Grimburgwal
+Oudezijds Voorburgwal
+Oudezijds Kolk
+
+Waalseilandgracht
+
+Geldersekade
+Recht Boomssloot
+Krom Boomssloot
+
+Open Havenfront
+Oosterdok
+
+Oudeschans
+Sint Antoniesluis
+Zwanenburgwal
+
+Raamgracht
+Kloveniersburgwal
+
+Nieuwe Vaart
+Entrepotdoksluis
+
+Schippersgracht
+Nieuwe Herengracht
+Nieuwe Keizersgracht
+Nieuwe Prinsengracht
+Nieuwe Achtergracht
+Plantage Muidergracht
+Entrepotdok
+Onbekendegracht
+
+Westelijk Marktkanaal
+Hugo de Grootgracht
+Kostverlorenvaart
+Kattensloot
+Bloemgracht
+Egelantiersgracht
+
+Westerkanaalschutsluis
+Zoutkeetsgracht
+Westerdok
+Korte Prinsengracht
+Eenhoornsluis

@@ -1,0 +1,29 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+.map {
+  height: 100vh;
+  width: 100%;
+}
+
+.base-map-layer {
+  filter: invert(1) hue-rotate(180deg) contrast(1) brightness(1);
+}
+
+/* Outline forbidden SVG markers (using the marker's class set by Leaflet) */
+.leaflet-marker-icon.forbidden-icon {
+  box-sizing: content-box;
+  border-radius: 2px;
+  background-clip: padding-box;
+  box-shadow: 0 0 0 2px white; /* black outline */
+}
