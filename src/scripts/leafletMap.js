@@ -147,7 +147,6 @@ export async function addCanals(map, canalsData) {
 
   layer.featureLayerByKey = buildCanalFeatureLayerLookup(layer);
   layer.highlightOverlayByKey = new Map();
-  layer._highlightMap = map;
   map.fitBounds(layer.getBounds());
   addOnewayDirectionArrows(map, layer);
 
@@ -492,19 +491,6 @@ function applyCanalHighlightStyle(canalsLayer, layer, highlight) {
     pane: "canal-highlight-pane",
   }).addTo(layer._map);
 
-  overlay._baseLayer = layer;
-  overlay._canalsLayer = canalsLayer;
-  overlay._highlightFeatureKey = featureKey;
-
-  const updateOverlayOnZoom = () => {
-    if (!overlay._map) return;
-    overlay.setLatLngs(layer.getLatLngs());
-    overlay.bringToFront();
-  };
-
-  layer._map.on("zoomend moveend", updateOverlayOnZoom);
-  overlay._zoomListener = updateOverlayOnZoom;
-
   overlay.bringToFront();
   canalsLayer.highlightOverlayByKey.set(featureKey, overlay);
 }
@@ -638,11 +624,13 @@ function isForbiddenWaterway(feature) {
 function isOnewayWaterway(properties) {
   const name = properties?.name;
 
-  if (name === "Singelgracht") {
-    return properties?.oneway === "yes";
-  }
+  return properties?.oneway === "yes";
 
-  return ONEWAY_WATERWAYS.has(name);
+  // if (name === "Singelgracht") {
+  //   return properties?.oneway === "yes";
+  // }
+
+  // return ONEWAY_WATERWAYS.has(name);
 }
 
 function getFeatureLines(feature) {

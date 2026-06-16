@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "generator": "overpass-turbo",
   "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
-  "timestamp": "2026-05-31T11:29:01Z",
+  "timestamp": "2026-06-16T15:28:44Z",
   "features": [
     {
       "type": "Feature",
@@ -1024,6 +1024,34 @@
         ]
       },
       "id": "way/27784995"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/27785363",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Jacob van Lennepkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8575881,
+            52.3618143
+          ],
+          [
+            4.8582577,
+            52.3617646
+          ],
+          [
+            4.8600574,
+            52.3621686
+          ]
+        ]
+      },
+      "id": "way/27785363"
     },
     {
       "type": "Feature",
@@ -2089,6 +2117,36 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/29473484",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "maxspeed": "7.5",
+        "motorboat": "yes",
+        "name": "Kostverlorenvaart",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8602016,
+            52.3647594
+          ],
+          [
+            4.8629687,
+            52.3679282
+          ],
+          [
+            4.8648879,
+            52.3699791
+          ]
+        ]
+      },
+      "id": "way/29473484"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/29473485",
         "CEMT": "III",
         "boat": "yes",
@@ -2587,6 +2645,411 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/29995938",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "maxspeed": "7.5",
+        "motorboat": "yes",
+        "name": "Kostverlorenvaart",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8549948,
+            52.3580143
+          ],
+          [
+            4.8568302,
+            52.3603205
+          ],
+          [
+            4.8571996,
+            52.3609452
+          ],
+          [
+            4.8574092,
+            52.3615003
+          ],
+          [
+            4.8575881,
+            52.3618143
+          ]
+        ]
+      },
+      "id": "way/29995938"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29995985",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Schinkel",
+        "waterway": "canal",
+        "wikidata": "Q2039670",
+        "wikipedia": "nl:Schinkel (rivier)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8536012,
+            52.3549325
+          ],
+          [
+            4.8537305,
+            52.3552977
+          ],
+          [
+            4.8542073,
+            52.3569943
+          ],
+          [
+            4.8543868,
+            52.3572979
+          ],
+          [
+            4.8547411,
+            52.357698
+          ]
+        ]
+      },
+      "id": "way/29995985"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29996154",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Schinkel",
+        "waterway": "canal",
+        "wikidata": "Q2039670",
+        "wikipedia": "nl:Schinkel (rivier)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.848614,
+            52.3429483
+          ],
+          [
+            4.8497727,
+            52.3449199
+          ],
+          [
+            4.8506475,
+            52.346822
+          ],
+          [
+            4.8510258,
+            52.3473266
+          ],
+          [
+            4.8515252,
+            52.3483577
+          ],
+          [
+            4.8516051,
+            52.3485982
+          ],
+          [
+            4.8518999,
+            52.3495631
+          ],
+          [
+            4.8523003,
+            52.3506731
+          ]
+        ]
+      },
+      "id": "way/29996154"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29996165",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Olympiakanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.848614,
+            52.3429483
+          ],
+          [
+            4.8495592,
+            52.3429209
+          ],
+          [
+            4.851268,
+            52.3432466
+          ]
+        ]
+      },
+      "id": "way/29996165"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29996257",
+        "boat": "yes",
+        "name": "Stadiongracht",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8571543,
+            52.3473661
+          ],
+          [
+            4.8557701,
+            52.3471762
+          ],
+          [
+            4.8544425,
+            52.3469886
+          ],
+          [
+            4.8534669,
+            52.3468435
+          ],
+          [
+            4.8530418,
+            52.3467384
+          ],
+          [
+            4.8526406,
+            52.346551
+          ],
+          [
+            4.8523407,
+            52.3463686
+          ],
+          [
+            4.8518922,
+            52.3460016
+          ],
+          [
+            4.8516626,
+            52.3457162
+          ],
+          [
+            4.8514893,
+            52.3453184
+          ],
+          [
+            4.851464,
+            52.3449243
+          ]
+        ]
+      },
+      "id": "way/29996257"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29996397",
+        "boat": "yes",
+        "name": "Stadiongracht",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8515246,
+            52.3445639
+          ],
+          [
+            4.8515494,
+            52.3444165
+          ],
+          [
+            4.8515649,
+            52.3443775
+          ]
+        ]
+      },
+      "id": "way/29996397"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29996748",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8768754,
+            52.3446251
+          ],
+          [
+            4.8784102,
+            52.3446754
+          ],
+          [
+            4.8787034,
+            52.3447396
+          ],
+          [
+            4.8811994,
+            52.3459647
+          ]
+        ]
+      },
+      "id": "way/29996748"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29997487",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8651123,
+            52.3506567
+          ],
+          [
+            4.864238,
+            52.350438
+          ],
+          [
+            4.8613366,
+            52.3496572
+          ],
+          [
+            4.8611454,
+            52.3496016
+          ],
+          [
+            4.8610113,
+            52.3495328
+          ],
+          [
+            4.8602978,
+            52.3488807
+          ]
+        ]
+      },
+      "id": "way/29997487"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29997489",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8854143,
+            52.3417396
+          ],
+          [
+            4.8855059,
+            52.342549
+          ]
+        ]
+      },
+      "id": "way/29997489"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29997500",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9044661,
+            52.349105
+          ],
+          [
+            4.9052583,
+            52.3491982
+          ],
+          [
+            4.9082537,
+            52.3496124
+          ],
+          [
+            4.909524,
+            52.349808
+          ]
+        ]
+      },
+      "id": "way/29997500"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/29997526",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8864592,
+            52.3498978
+          ],
+          [
+            4.8864842,
+            52.3501373
+          ],
+          [
+            4.8864962,
+            52.3512377
+          ],
+          [
+            4.8865075,
+            52.3520955
+          ]
+        ]
+      },
+      "id": "way/29997526"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/30010643",
         "boat": "yes",
         "canoe": "yes",
@@ -2716,6 +3179,31 @@
         ]
       },
       "id": "way/30115716"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/30119653",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Ringvaart",
+        "waterway": "canal",
+        "wikidata": "Q15120362"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9133164,
+            52.3485996
+          ],
+          [
+            4.9149114,
+            52.3493116
+          ]
+        ]
+      },
+      "id": "way/30119653"
     },
     {
       "type": "Feature",
@@ -3052,6 +3540,353 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/70385077",
+        "CEMT": "II",
+        "boat": "yes",
+        "maxspeed": "7.5",
+        "name": "Amstel",
+        "name:nl": "Amstel",
+        "name:ru": "Амстел",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9007782,
+            52.2958874
+          ],
+          [
+            4.9013107,
+            52.2963103
+          ],
+          [
+            4.9013107,
+            52.296883
+          ],
+          [
+            4.9008858,
+            52.2973284
+          ],
+          [
+            4.8996458,
+            52.2981398
+          ],
+          [
+            4.899462,
+            52.2982861
+          ],
+          [
+            4.8990936,
+            52.2985792
+          ],
+          [
+            4.8989771,
+            52.2987058
+          ],
+          [
+            4.8988568,
+            52.2988609
+          ],
+          [
+            4.8987408,
+            52.2990413
+          ],
+          [
+            4.8985533,
+            52.2993329
+          ],
+          [
+            4.8985162,
+            52.2995565
+          ],
+          [
+            4.8985013,
+            52.2997147
+          ],
+          [
+            4.8986487,
+            52.3001601
+          ],
+          [
+            4.899325,
+            52.3007964
+          ],
+          [
+            4.9006962,
+            52.3016438
+          ],
+          [
+            4.9038097,
+            52.3034785
+          ],
+          [
+            4.9052474,
+            52.3043969
+          ],
+          [
+            4.9061057,
+            52.3050595
+          ],
+          [
+            4.9066743,
+            52.3054466
+          ],
+          [
+            4.9076936,
+            52.3064634
+          ],
+          [
+            4.9078462,
+            52.3068273
+          ],
+          [
+            4.9078726,
+            52.3070591
+          ],
+          [
+            4.9077472,
+            52.3075261
+          ],
+          [
+            4.9071464,
+            52.3082214
+          ],
+          [
+            4.9060843,
+            52.3093169
+          ],
+          [
+            4.9054513,
+            52.3102811
+          ],
+          [
+            4.9052367,
+            52.3111076
+          ],
+          [
+            4.905301,
+            52.3118423
+          ],
+          [
+            4.9054083,
+            52.312262
+          ],
+          [
+            4.9058804,
+            52.3131082
+          ],
+          [
+            4.9061057,
+            52.3142953
+          ],
+          [
+            4.9057302,
+            52.3152398
+          ],
+          [
+            4.9055538,
+            52.3155869
+          ],
+          [
+            4.9055183,
+            52.3158163
+          ],
+          [
+            4.9055693,
+            52.3160203
+          ],
+          [
+            4.9058268,
+            52.316381
+          ],
+          [
+            4.9064049,
+            52.3167123
+          ],
+          [
+            4.9070498,
+            52.3169516
+          ],
+          [
+            4.9084875,
+            52.317391
+          ],
+          [
+            4.9089112,
+            52.3177458
+          ],
+          [
+            4.9092007,
+            52.3181561
+          ],
+          [
+            4.9092018,
+            52.3185539
+          ],
+          [
+            4.9090384,
+            52.3188249
+          ],
+          [
+            4.9087271,
+            52.3190439
+          ],
+          [
+            4.9075541,
+            52.3194503
+          ],
+          [
+            4.9051723,
+            52.3201717
+          ],
+          [
+            4.9038848,
+            52.3206635
+          ],
+          [
+            4.902528,
+            52.321196
+          ],
+          [
+            4.9018133,
+            52.3213571
+          ],
+          [
+            4.9011061,
+            52.3214308
+          ],
+          [
+            4.8993036,
+            52.3214701
+          ],
+          [
+            4.897823,
+            52.3216866
+          ],
+          [
+            4.8969037,
+            52.3219888
+          ],
+          [
+            4.8960744,
+            52.322543
+          ],
+          [
+            4.8958105,
+            52.3228615
+          ],
+          [
+            4.8954949,
+            52.3233128
+          ],
+          [
+            4.8953125,
+            52.3240473
+          ],
+          [
+            4.8955915,
+            52.325103
+          ],
+          [
+            4.8966519,
+            52.3269002
+          ],
+          [
+            4.8971471,
+            52.3277455
+          ],
+          [
+            4.8984239,
+            52.3291618
+          ],
+          [
+            4.8990569,
+            52.3300272
+          ],
+          [
+            4.8990032,
+            52.3306829
+          ],
+          [
+            4.8983917,
+            52.3318106
+          ],
+          [
+            4.8984239,
+            52.3322367
+          ],
+          [
+            4.8985055,
+            52.3325025
+          ],
+          [
+            4.8986626,
+            52.3327477
+          ],
+          [
+            4.8990113,
+            52.3330296
+          ],
+          [
+            4.899484,
+            52.3332092
+          ],
+          [
+            4.9000421,
+            52.333325
+          ],
+          [
+            4.9006984,
+            52.3334299
+          ],
+          [
+            4.9022423,
+            52.3334024
+          ],
+          [
+            4.902988,
+            52.333408
+          ],
+          [
+            4.9037883,
+            52.3334693
+          ],
+          [
+            4.9051294,
+            52.333902
+          ],
+          [
+            4.9060787,
+            52.3347671
+          ],
+          [
+            4.9067544,
+            52.3358989
+          ],
+          [
+            4.9069906,
+            52.3362945
+          ],
+          [
+            4.9075593,
+            52.3377957
+          ],
+          [
+            4.9081493,
+            52.3382743
+          ],
+          [
+            4.90919,
+            52.3386479
+          ]
+        ]
+      },
+      "id": "way/70385077"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/92323947",
         "boat": "yes",
         "name": "Singel",
@@ -3323,6 +4158,39 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/195575783",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Stadiongracht",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8519644,
+            52.3433703
+          ],
+          [
+            4.8526758,
+            52.3418881
+          ],
+          [
+            4.8528621,
+            52.3417819
+          ],
+          [
+            4.8530961,
+            52.3417115
+          ]
+        ]
+      },
+      "id": "way/195575783"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/195582876",
         "CEMT": "0",
         "boat": "yes",
@@ -3534,6 +4402,73 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/254790230",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9193183,
+            52.3358645
+          ],
+          [
+            4.9183812,
+            52.33563
+          ],
+          [
+            4.9154221,
+            52.3348143
+          ],
+          [
+            4.9151732,
+            52.3347518
+          ]
+        ]
+      },
+      "id": "way/254790230"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/254790231",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9175325,
+            52.3315046
+          ],
+          [
+            4.9174393,
+            52.331612
+          ],
+          [
+            4.9172664,
+            52.3318269
+          ],
+          [
+            4.917168,
+            52.3319137
+          ]
+        ]
+      },
+      "id": "way/254790231"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/260595783",
         "CEMT": "II",
         "boat": "yes",
@@ -3737,6 +4672,32 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/330484385",
+        "CEMT": "0",
+        "canoe": "yes",
+        "lock": "yes",
+        "motorboat": "yes",
+        "name": "Stadionsluis",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8551774,
+            52.3419721
+          ],
+          [
+            4.8552355,
+            52.3419795
+          ]
+        ]
+      },
+      "id": "way/330484385"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/360632518",
         "CEMT": "0",
         "boat": "yes",
@@ -3906,38 +4867,6 @@
         ]
       },
       "id": "way/388339527"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "way/404425491",
-        "canoe": "yes",
-        "motorboat": "yes",
-        "name": "Zouthaven",
-        "waterway": "canal"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.9143879,
-            52.3775309
-          ],
-          [
-            4.9120719,
-            52.3777956
-          ],
-          [
-            4.9111634,
-            52.3783159
-          ],
-          [
-            4.9106169,
-            52.3783535
-          ]
-        ]
-      },
-      "id": "way/404425491"
     },
     {
       "type": "Feature",
@@ -4172,36 +5101,6 @@
         ]
       },
       "id": "way/527004191"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "way/544663980",
-        "CEMT": "IV",
-        "intermittent": "no",
-        "motorboat": "yes",
-        "name": "Westerkanaal",
-        "waterway": "canal",
-        "wikidata": "Q2397124"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.8858262,
-            52.3909899
-          ],
-          [
-            4.8868236,
-            52.3921539
-          ],
-          [
-            4.8893906,
-            52.3939609
-          ]
-        ]
-      },
-      "id": "way/544663980"
     },
     {
       "type": "Feature",
@@ -4870,6 +5769,7 @@
         "@id": "way/859321999",
         "CEMT": "0",
         "boat": "yes",
+        "maxspeed": "6",
         "name": "Nieuwe Vaart",
         "oneway": "yes",
         "seamark:bridge:category": "yes",
@@ -5023,6 +5923,31 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/866082603",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Stadiongracht",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8559791,
+            52.3420743
+          ],
+          [
+            4.8572008,
+            52.3422477
+          ]
+        ]
+      },
+      "id": "way/866082603"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/881129188",
         "CEMT": "II",
         "boat": "yes",
@@ -5045,6 +5970,159 @@
         ]
       },
       "id": "way/881129188"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/881129189",
+        "CEMT": "II",
+        "boat": "yes",
+        "maxspeed": "7.5",
+        "name": "Amstel",
+        "name:nl": "Amstel",
+        "name:ru": "Амстел",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.911069,
+            52.3500738
+          ],
+          [
+            4.9097558,
+            52.3521446
+          ],
+          [
+            4.9072753,
+            52.3544075
+          ],
+          [
+            4.9068332,
+            52.3549114
+          ],
+          [
+            4.9064658,
+            52.3554085
+          ],
+          [
+            4.9061118,
+            52.3560256
+          ]
+        ]
+      },
+      "id": "way/881129189"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/881129200",
+        "CEMT": "II",
+        "boat": "yes",
+        "maxspeed": "7.5",
+        "name": "Amstel",
+        "name:nl": "Amstel",
+        "name:ru": "Амстел",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9126888,
+            52.3475036
+          ],
+          [
+            4.9125378,
+            52.3478812
+          ],
+          [
+            4.9121846,
+            52.348229
+          ],
+          [
+            4.911069,
+            52.3500738
+          ]
+        ]
+      },
+      "id": "way/881129200"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/881129203",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "maxspeed": "7.5",
+        "motorboat": "yes",
+        "name": "Kostverlorenvaart",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8575881,
+            52.3618143
+          ],
+          [
+            4.8577993,
+            52.3620183
+          ],
+          [
+            4.858809,
+            52.3632011
+          ],
+          [
+            4.8592479,
+            52.3637046
+          ]
+        ]
+      },
+      "id": "way/881129203"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/881129204",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Admiralengracht",
+        "waterway": "canal",
+        "wikidata": "Q2350206"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8592479,
+            52.3637046
+          ],
+          [
+            4.858971,
+            52.3638164
+          ],
+          [
+            4.8586862,
+            52.3639313
+          ],
+          [
+            4.8584603,
+            52.3640652
+          ],
+          [
+            4.8583802,
+            52.3641127
+          ],
+          [
+            4.8582258,
+            52.3642752
+          ]
+        ]
+      },
+      "id": "way/881129204"
     },
     {
       "type": "Feature",
@@ -13085,6 +14163,165 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/1322637171",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8864372,
+            52.3496259
+          ],
+          [
+            4.8864592,
+            52.3498978
+          ]
+        ]
+      },
+      "id": "way/1322637171"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1322637172",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8863297,
+            52.3484595
+          ],
+          [
+            4.8864007,
+            52.3492259
+          ],
+          [
+            4.8864372,
+            52.3496259
+          ]
+        ]
+      },
+      "id": "way/1322637172"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1322637173",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8865075,
+            52.3520955
+          ],
+          [
+            4.8865002,
+            52.3524012
+          ]
+        ]
+      },
+      "id": "way/1322637173"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1322637174",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8865002,
+            52.3524012
+          ],
+          [
+            4.8864944,
+            52.3528481
+          ],
+          [
+            4.8866151,
+            52.3531418
+          ],
+          [
+            4.8867396,
+            52.3533995
+          ]
+        ]
+      },
+      "id": "way/1322637174"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1322637176",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8867396,
+            52.3533995
+          ],
+          [
+            4.8867623,
+            52.3545358
+          ]
+        ]
+      },
+      "id": "way/1322637176"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1322637177",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8867623,
+            52.3545358
+          ],
+          [
+            4.8867545,
+            52.3547049
+          ]
+        ]
+      },
+      "id": "way/1322637177"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/1322637178",
         "canoe": "yes",
         "motorboat": "yes",
@@ -14714,6 +15951,38 @@
         ]
       },
       "id": "way/1322986010"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1322986011",
+        "CEMT": "II",
+        "boat": "yes",
+        "maxspeed": "7.5",
+        "name": "Amstel",
+        "name:nl": "Amstel",
+        "name:ru": "Амстел",
+        "seamark:bridge:category": "yes",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9061118,
+            52.3560256
+          ],
+          [
+            4.906034,
+            52.3561612
+          ],
+          [
+            4.9059667,
+            52.356311
+          ]
+        ]
+      },
+      "id": "way/1322986011"
     },
     {
       "type": "Feature",
@@ -18527,30 +19796,6 @@
     {
       "type": "Feature",
       "properties": {
-        "@id": "way/1333528007",
-        "CEMT": "II",
-        "boat": "yes",
-        "name": "Oosterdoksdoorgang",
-        "waterway": "canal"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            4.9101605,
-            52.379712
-          ],
-          [
-            4.9106169,
-            52.3783535
-          ]
-        ]
-      },
-      "id": "way/1333528007"
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "@id": "way/1333529237",
         "CEMT": "0",
         "boat": "yes",
@@ -19368,6 +20613,90 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/1333534380",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "maxspeed": "7.5",
+        "motorboat": "yes",
+        "name": "Kostverlorenvaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8599516,
+            52.3644689
+          ],
+          [
+            4.8602016,
+            52.3647594
+          ]
+        ]
+      },
+      "id": "way/1333534380"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333534381",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "maxspeed": "7.5",
+        "motorboat": "yes",
+        "name": "Kostverlorenvaart",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8592479,
+            52.3637046
+          ],
+          [
+            4.8594392,
+            52.3638507
+          ],
+          [
+            4.8599516,
+            52.3644689
+          ]
+        ]
+      },
+      "id": "way/1333534381"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333534382",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "maxspeed": "7.5",
+        "motorboat": "yes",
+        "name": "Kostverlorenvaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8648879,
+            52.3699791
+          ],
+          [
+            4.865185,
+            52.3703088
+          ]
+        ]
+      },
+      "id": "way/1333534382"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/1333534383",
         "CEMT": "IV",
         "boat": "yes",
@@ -19449,6 +20778,172 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/1333535579",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Jacob van Lennepkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8600574,
+            52.3621686
+          ],
+          [
+            4.86022,
+            52.3622051
+          ]
+        ]
+      },
+      "id": "way/1333535579"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333535580",
+        "boat": "yes",
+        "name": "Jacob van Lennepkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.86022,
+            52.3622051
+          ],
+          [
+            4.8636301,
+            52.3630252
+          ]
+        ]
+      },
+      "id": "way/1333535580"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333535581",
+        "boat": "yes",
+        "name": "Jacob van Lennepkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8636301,
+            52.3630252
+          ],
+          [
+            4.8639529,
+            52.3631023
+          ]
+        ]
+      },
+      "id": "way/1333535581"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333535582",
+        "boat": "yes",
+        "name": "Jacob van Lennepkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8639529,
+            52.3631023
+          ],
+          [
+            4.8665815,
+            52.3637454
+          ]
+        ]
+      },
+      "id": "way/1333535582"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333535583",
+        "boat": "yes",
+        "name": "Jacob van Lennepkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8665815,
+            52.3637454
+          ],
+          [
+            4.8668613,
+            52.3638117
+          ]
+        ]
+      },
+      "id": "way/1333535583"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333535584",
+        "boat": "yes",
+        "name": "Jacob van Lennepkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8668613,
+            52.3638117
+          ],
+          [
+            4.8686465,
+            52.364235
+          ]
+        ]
+      },
+      "id": "way/1333535584"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333535585",
+        "boat": "yes",
+        "name": "Jacob van Lennepkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8686465,
+            52.364235
+          ],
+          [
+            4.868749,
+            52.3642601
+          ]
+        ]
+      },
+      "id": "way/1333535585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/1333535586",
         "boat": "yes",
         "name": "Jacob van Lennepkanaal",
@@ -19523,6 +21018,89 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/1333535896",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "maxspeed": "7.5",
+        "motorboat": "yes",
+        "name": "Kostverlorenvaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8547411,
+            52.357698
+          ],
+          [
+            4.8549948,
+            52.3580143
+          ]
+        ]
+      },
+      "id": "way/1333535896"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333694437",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Ringvaart",
+        "waterway": "canal",
+        "wikidata": "Q15120362"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9121846,
+            52.348229
+          ],
+          [
+            4.9128498,
+            52.3483947
+          ]
+        ]
+      },
+      "id": "way/1333694437"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1333694438",
+        "CEMT": "0",
+        "boat": "yes",
+        "layer": "0",
+        "name": "Ringvaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q15120362"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9128498,
+            52.3483947
+          ],
+          [
+            4.9130928,
+            52.3484998
+          ],
+          [
+            4.9133164,
+            52.3485996
+          ]
+        ]
+      },
+      "id": "way/1333694438"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/1334229368",
         "alt_name": "Haarlemmervaart",
         "boat": "yes",
@@ -19593,6 +21171,2085 @@
     {
       "type": "Feature",
       "properties": {
+        "@id": "way/1334264731",
+        "CEMT": "0",
+        "canoe": "yes",
+        "lock": "yes",
+        "motorboat": "yes",
+        "name": "Stadionsluis",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8559289,
+            52.3420679
+          ],
+          [
+            4.8559791,
+            52.3420743
+          ]
+        ]
+      },
+      "id": "way/1334264731"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264732",
+        "CEMT": "0",
+        "canoe": "yes",
+        "lock": "yes",
+        "motorboat": "yes",
+        "name": "Stadionsluis",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8552355,
+            52.3419795
+          ],
+          [
+            4.8559289,
+            52.3420679
+          ]
+        ]
+      },
+      "id": "way/1334264732"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264733",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Stadiongracht",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8549895,
+            52.3419486
+          ],
+          [
+            4.8551774,
+            52.3419721
+          ]
+        ]
+      },
+      "id": "way/1334264733"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264734",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Stadiongracht",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8530961,
+            52.3417115
+          ],
+          [
+            4.853349,
+            52.3417432
+          ]
+        ]
+      },
+      "id": "way/1334264734"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264735",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Stadiongracht",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8536337,
+            52.341781
+          ],
+          [
+            4.8549895,
+            52.3419486
+          ]
+        ]
+      },
+      "id": "way/1334264735"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264736",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Olympiakanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.851268,
+            52.3432466
+          ],
+          [
+            4.8516601,
+            52.343315
+          ]
+        ]
+      },
+      "id": "way/1334264736"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264737",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Olympiakanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8516601,
+            52.343315
+          ],
+          [
+            4.8519644,
+            52.3433703
+          ]
+        ]
+      },
+      "id": "way/1334264737"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264738",
+        "boat": "yes",
+        "name": "Stadiongracht",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8515649,
+            52.3443775
+          ],
+          [
+            4.8519644,
+            52.3433703
+          ]
+        ]
+      },
+      "id": "way/1334264738"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264739",
+        "boat": "yes",
+        "name": "Stadiongracht",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.851464,
+            52.3449243
+          ],
+          [
+            4.8515246,
+            52.3445639
+          ]
+        ]
+      },
+      "id": "way/1334264739"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264740",
+        "boat": "yes",
+        "name": "Olympiakanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8507226,
+            52.3449056
+          ],
+          [
+            4.8510688,
+            52.3449266
+          ]
+        ]
+      },
+      "id": "way/1334264740"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264741",
+        "boat": "yes",
+        "name": "Olympiakanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8510688,
+            52.3449266
+          ],
+          [
+            4.8511153,
+            52.3449294
+          ],
+          [
+            4.851464,
+            52.3449243
+          ]
+        ]
+      },
+      "id": "way/1334264741"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264748",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Schinkel",
+        "waterway": "canal",
+        "wikidata": "Q2039670",
+        "wikipedia": "nl:Schinkel (rivier)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8524789,
+            52.3512194
+          ],
+          [
+            4.8535252,
+            52.3546705
+          ]
+        ]
+      },
+      "id": "way/1334264748"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264749",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Schinkel",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2039670",
+        "wikipedia": "nl:Schinkel (rivier)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8523003,
+            52.3506731
+          ],
+          [
+            4.8523905,
+            52.3509232
+          ]
+        ]
+      },
+      "id": "way/1334264749"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264750",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Schinkel",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2039670",
+        "wikipedia": "nl:Schinkel (rivier)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8523905,
+            52.3509232
+          ],
+          [
+            4.8524789,
+            52.3512194
+          ]
+        ]
+      },
+      "id": "way/1334264750"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334264751",
+        "CEMT": "IV",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Schinkel",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2039670",
+        "wikipedia": "nl:Schinkel (rivier)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8535252,
+            52.3546705
+          ],
+          [
+            4.8536012,
+            52.3549325
+          ]
+        ]
+      },
+      "id": "way/1334264751"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808580",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9100404,
+            52.3498926
+          ],
+          [
+            4.911069,
+            52.3500738
+          ]
+        ]
+      },
+      "id": "way/1334808580"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808581",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.909524,
+            52.349808
+          ],
+          [
+            4.9098085,
+            52.3498518
+          ],
+          [
+            4.9100404,
+            52.3498926
+          ]
+        ]
+      },
+      "id": "way/1334808581"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808582",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9039033,
+            52.3490331
+          ],
+          [
+            4.9041546,
+            52.3490683
+          ],
+          [
+            4.9044661,
+            52.349105
+          ]
+        ]
+      },
+      "id": "way/1334808582"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808583",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8998859,
+            52.3484696
+          ],
+          [
+            4.9039033,
+            52.3490331
+          ]
+        ]
+      },
+      "id": "way/1334808583"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808584",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8997314,
+            52.3484477
+          ],
+          [
+            4.8998223,
+            52.3484607
+          ],
+          [
+            4.8998859,
+            52.3484696
+          ]
+        ]
+      },
+      "id": "way/1334808584"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808585",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8954512,
+            52.3480049
+          ],
+          [
+            4.8964177,
+            52.3479766
+          ],
+          [
+            4.8997314,
+            52.3484477
+          ]
+        ]
+      },
+      "id": "way/1334808585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808586",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8950784,
+            52.3480195
+          ],
+          [
+            4.8952424,
+            52.348011
+          ],
+          [
+            4.8954512,
+            52.3480049
+          ]
+        ]
+      },
+      "id": "way/1334808586"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808587",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8916253,
+            52.3481982
+          ],
+          [
+            4.8950784,
+            52.3480195
+          ]
+        ]
+      },
+      "id": "way/1334808587"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808588",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8909585,
+            52.3482288
+          ],
+          [
+            4.8912304,
+            52.3482186
+          ],
+          [
+            4.8916253,
+            52.3481982
+          ]
+        ]
+      },
+      "id": "way/1334808588"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808589",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Amstelkanaal",
+        "waterway": "canal",
+        "wikidata": "Q2371875"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8863297,
+            52.3484595
+          ],
+          [
+            4.8899541,
+            52.3482665
+          ],
+          [
+            4.8909585,
+            52.3482288
+          ]
+        ]
+      },
+      "id": "way/1334808589"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808590",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8855059,
+            52.342549
+          ],
+          [
+            4.8855124,
+            52.3425945
+          ]
+        ]
+      },
+      "id": "way/1334808590"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808591",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8855124,
+            52.3425945
+          ],
+          [
+            4.8857611,
+            52.3443307
+          ]
+        ]
+      },
+      "id": "way/1334808591"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808592",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8858148,
+            52.3447053
+          ],
+          [
+            4.8861323,
+            52.3471592
+          ]
+        ]
+      },
+      "id": "way/1334808592"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808593",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8857611,
+            52.3443307
+          ],
+          [
+            4.8858148,
+            52.3447053
+          ]
+        ]
+      },
+      "id": "way/1334808593"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808594",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8861828,
+            52.3476471
+          ],
+          [
+            4.8863297,
+            52.3484595
+          ]
+        ]
+      },
+      "id": "way/1334808594"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808595",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Boerenwetering",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8861323,
+            52.3471592
+          ],
+          [
+            4.8861828,
+            52.3476471
+          ]
+        ]
+      },
+      "id": "way/1334808595"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808596",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8602978,
+            52.3488807
+          ],
+          [
+            4.8600084,
+            52.3486245
+          ]
+        ]
+      },
+      "id": "way/1334808596"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808597",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8600084,
+            52.3486245
+          ],
+          [
+            4.8589248,
+            52.3476651
+          ],
+          [
+            4.8587629,
+            52.3476074
+          ],
+          [
+            4.8580403,
+            52.3474693
+          ]
+        ]
+      },
+      "id": "way/1334808597"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808598",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8655201,
+            52.3507618
+          ],
+          [
+            4.8651123,
+            52.3506567
+          ]
+        ]
+      },
+      "id": "way/1334808598"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808599",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8703813,
+            52.3520243
+          ],
+          [
+            4.8701257,
+            52.3519588
+          ],
+          [
+            4.8655201,
+            52.3507618
+          ]
+        ]
+      },
+      "id": "way/1334808599"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808600",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8708974,
+            52.3521085
+          ],
+          [
+            4.8703813,
+            52.3520243
+          ]
+        ]
+      },
+      "id": "way/1334808600"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808601",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8731146,
+            52.3522079
+          ],
+          [
+            4.8718337,
+            52.3522157
+          ],
+          [
+            4.8708974,
+            52.3521085
+          ]
+        ]
+      },
+      "id": "way/1334808601"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808602",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8736117,
+            52.3521796
+          ],
+          [
+            4.8731146,
+            52.3522079
+          ]
+        ]
+      },
+      "id": "way/1334808602"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808603",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8787727,
+            52.3512437
+          ],
+          [
+            4.8779784,
+            52.3513693
+          ],
+          [
+            4.8740317,
+            52.3521088
+          ],
+          [
+            4.8736117,
+            52.3521796
+          ]
+        ]
+      },
+      "id": "way/1334808603"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808604",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8793093,
+            52.3511478
+          ],
+          [
+            4.8787727,
+            52.3512437
+          ]
+        ]
+      },
+      "id": "way/1334808604"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808605",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8846018,
+            52.349693
+          ],
+          [
+            4.8838407,
+            52.3502421
+          ],
+          [
+            4.8835488,
+            52.3503732
+          ],
+          [
+            4.8793093,
+            52.3511478
+          ]
+        ]
+      },
+      "id": "way/1334808605"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808606",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8849813,
+            52.3494193
+          ],
+          [
+            4.8846018,
+            52.349693
+          ]
+        ]
+      },
+      "id": "way/1334808606"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808607",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Noorder Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8863297,
+            52.3484595
+          ],
+          [
+            4.885419,
+            52.3491231
+          ],
+          [
+            4.8849813,
+            52.3494193
+          ]
+        ]
+      },
+      "id": "way/1334808607"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808608",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8848296,
+            52.3477706
+          ],
+          [
+            4.8863297,
+            52.3484595
+          ]
+        ]
+      },
+      "id": "way/1334808608"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808609",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8843225,
+            52.3475218
+          ],
+          [
+            4.8848296,
+            52.3477706
+          ]
+        ]
+      },
+      "id": "way/1334808609"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808610",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8811994,
+            52.3459647
+          ],
+          [
+            4.8816931,
+            52.3462163
+          ]
+        ]
+      },
+      "id": "way/1334808610"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808611",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8816931,
+            52.3462163
+          ],
+          [
+            4.8825074,
+            52.3466314
+          ],
+          [
+            4.8843225,
+            52.3475218
+          ]
+        ]
+      },
+      "id": "way/1334808611"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808612",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8763163,
+            52.3445986
+          ],
+          [
+            4.8768754,
+            52.3446251
+          ]
+        ]
+      },
+      "id": "way/1334808612"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808613",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8728562,
+            52.3444698
+          ],
+          [
+            4.874981,
+            52.3445496
+          ],
+          [
+            4.8763163,
+            52.3445986
+          ]
+        ]
+      },
+      "id": "way/1334808613"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808614",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8726392,
+            52.3444617
+          ],
+          [
+            4.8728562,
+            52.3444698
+          ]
+        ]
+      },
+      "id": "way/1334808614"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808615",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8682799,
+            52.3440015
+          ],
+          [
+            4.8707498,
+            52.3443542
+          ],
+          [
+            4.8715633,
+            52.3444213
+          ],
+          [
+            4.8726392,
+            52.3444617
+          ]
+        ]
+      },
+      "id": "way/1334808615"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808616",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.867716,
+            52.3439209
+          ],
+          [
+            4.8682799,
+            52.3440015
+          ]
+        ]
+      },
+      "id": "way/1334808616"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808617",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8655136,
+            52.3433752
+          ],
+          [
+            4.8671618,
+            52.3438418
+          ],
+          [
+            4.867716,
+            52.3439209
+          ]
+        ]
+      },
+      "id": "way/1334808617"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808618",
+        "CEMT": "0",
+        "boat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8653204,
+            52.3433147
+          ],
+          [
+            4.8655136,
+            52.3433752
+          ]
+        ]
+      },
+      "id": "way/1334808618"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808619",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8605302,
+            52.3425426
+          ],
+          [
+            4.8624068,
+            52.342519
+          ],
+          [
+            4.8634596,
+            52.3426433
+          ],
+          [
+            4.8648242,
+            52.3430594
+          ],
+          [
+            4.8653204,
+            52.3433147
+          ]
+        ]
+      },
+      "id": "way/1334808619"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808620",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8604001,
+            52.3425425
+          ],
+          [
+            4.8605302,
+            52.3425426
+          ]
+        ]
+      },
+      "id": "way/1334808620"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808621",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.857802,
+            52.3423306
+          ],
+          [
+            4.8593958,
+            52.3425336
+          ],
+          [
+            4.8604001,
+            52.3425425
+          ]
+        ]
+      },
+      "id": "way/1334808621"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808622",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Stadiongracht",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8572008,
+            52.3422477
+          ],
+          [
+            4.8574894,
+            52.3422908
+          ]
+        ]
+      },
+      "id": "way/1334808622"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808623",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8574894,
+            52.3422908
+          ],
+          [
+            4.857802,
+            52.3423306
+          ]
+        ]
+      },
+      "id": "way/1334808623"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334808624",
+        "CEMT": "0",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Stadiongracht",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.853349,
+            52.3417432
+          ],
+          [
+            4.8536337,
+            52.341781
+          ]
+        ]
+      },
+      "id": "way/1334808624"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812562",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Weespertrekvaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2358028"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9191678,
+            52.3425406
+          ],
+          [
+            4.9194678,
+            52.3426055
+          ],
+          [
+            4.9197378,
+            52.3426635
+          ]
+        ]
+      },
+      "id": "way/1334812562"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812563",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Weespertrekvaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q2358028"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9185347,
+            52.3424037
+          ],
+          [
+            4.918853,
+            52.3424725
+          ],
+          [
+            4.9191678,
+            52.3425406
+          ]
+        ]
+      },
+      "id": "way/1334812563"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812564",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Weespertrekvaart",
+        "waterway": "canal",
+        "wikidata": "Q2358028"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9153538,
+            52.3419526
+          ],
+          [
+            4.9173452,
+            52.3421915
+          ],
+          [
+            4.9185347,
+            52.3424037
+          ]
+        ]
+      },
+      "id": "way/1334812564"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812565",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikimedia_commons": "Category:Duivendrechtsevaart",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9191862,
+            52.3296972
+          ],
+          [
+            4.9175325,
+            52.3315046
+          ]
+        ]
+      },
+      "id": "way/1334812565"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812566",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikimedia_commons": "Category:Duivendrechtsevaart",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9198546,
+            52.3289341
+          ],
+          [
+            4.9191862,
+            52.3296972
+          ]
+        ]
+      },
+      "id": "way/1334812566"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812567",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.917168,
+            52.3319137
+          ],
+          [
+            4.9168873,
+            52.3321613
+          ],
+          [
+            4.9151732,
+            52.3347518
+          ],
+          [
+            4.9142813,
+            52.3360542
+          ]
+        ]
+      },
+      "id": "way/1334812567"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812568",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikimedia_commons": "Category:Duivendrechtsevaart",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9219273,
+            52.3266592
+          ],
+          [
+            4.9212184,
+            52.3275318
+          ],
+          [
+            4.9198546,
+            52.3289341
+          ]
+        ]
+      },
+      "id": "way/1334812568"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812569",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9140752,
+            52.3363552
+          ],
+          [
+            4.9126547,
+            52.3384296
+          ]
+        ]
+      },
+      "id": "way/1334812569"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812570",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9142813,
+            52.3360542
+          ],
+          [
+            4.9140752,
+            52.3363552
+          ]
+        ]
+      },
+      "id": "way/1334812570"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812571",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "seamark:bridge:category": "yes",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9126547,
+            52.3384296
+          ],
+          [
+            4.9125868,
+            52.3385287
+          ],
+          [
+            4.9125377,
+            52.3386062
+          ]
+        ]
+      },
+      "id": "way/1334812571"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812572",
+        "CEMT": "II",
+        "boat": "yes",
+        "name": "Duivendrechtsevaart",
+        "waterway": "canal",
+        "wikidata": "Q4489489",
+        "wikipedia": "nl:Duivendrechtsevaart"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9125377,
+            52.3386062
+          ],
+          [
+            4.9120288,
+            52.3394097
+          ]
+        ]
+      },
+      "id": "way/1334812572"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812573",
+        "CEMT": "II",
+        "boat": "yes",
+        "maxspeed": "7.5",
+        "name": "Amstel",
+        "name:nl": "Amstel",
+        "name:ru": "Амстел",
+        "seamark:bridge:category": "yes",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9128051,
+            52.3471924
+          ],
+          [
+            4.9127425,
+            52.3473577
+          ],
+          [
+            4.9126888,
+            52.3475036
+          ]
+        ]
+      },
+      "id": "way/1334812573"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812574",
+        "CEMT": "II",
+        "boat": "yes",
+        "maxspeed": "7.5",
+        "name": "Amstel",
+        "name:nl": "Amstel",
+        "name:ru": "Амстел",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9153538,
+            52.3419526
+          ],
+          [
+            4.9145797,
+            52.3430262
+          ],
+          [
+            4.9133649,
+            52.3452952
+          ],
+          [
+            4.9133607,
+            52.3459842
+          ],
+          [
+            4.9128051,
+            52.3471924
+          ]
+        ]
+      },
+      "id": "way/1334812574"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812575",
+        "CEMT": "II",
+        "boat": "yes",
+        "maxspeed": "7.5",
+        "name": "Amstel",
+        "name:nl": "Amstel",
+        "name:ru": "Амстел",
+        "seamark:bridge:category": "yes",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.90919,
+            52.3386479
+          ],
+          [
+            4.9094575,
+            52.3387546
+          ],
+          [
+            4.9097158,
+            52.3388577
+          ]
+        ]
+      },
+      "id": "way/1334812575"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1334812576",
+        "CEMT": "II",
+        "boat": "yes",
+        "maxspeed": "7.5",
+        "name": "Amstel",
+        "name:nl": "Amstel",
+        "name:ru": "Амстел",
+        "waterway": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.9097158,
+            52.3388577
+          ],
+          [
+            4.9120288,
+            52.3394097
+          ],
+          [
+            4.9123793,
+            52.339504
+          ],
+          [
+            4.9140609,
+            52.3402015
+          ],
+          [
+            4.9152638,
+            52.341169
+          ],
+          [
+            4.915436,
+            52.3415058
+          ],
+          [
+            4.9153538,
+            52.3419526
+          ]
+        ]
+      },
+      "id": "way/1334812576"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "@id": "way/1334816099",
         "canoe": "yes",
         "motorboat": "yes",
@@ -19641,6 +23298,31 @@
         ]
       },
       "id": "way/1334843249"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1335712364",
+        "boat": "yes",
+        "canoe": "yes",
+        "motorboat": "yes",
+        "name": "Zuider Amstelkanaal",
+        "waterway": "canal"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8648242,
+            52.3430594
+          ],
+          [
+            4.8649705,
+            52.3416078
+          ]
+        ]
+      },
+      "id": "way/1335712364"
     },
     {
       "type": "Feature",

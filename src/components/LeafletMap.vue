@@ -1,36 +1,57 @@
 <template>
   <div class="map-shell">
-    <div class="pointer-events-none absolute left-3 top-3 z-[1000] w-[calc(100vw-1.5rem)] max-w-[24rem] sm:left-4 sm:top-4 sm:w-[24rem]">
-      <div class="pointer-events-auto rounded-2xl border border-white/15 bg-slate-950/90 p-3 text-slate-50 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-4">
-        <label class="mb-2 block text-[0.72rem] font-bold uppercase tracking-[0.12em] text-slate-200/70 sm:text-[0.78rem]" for="canal-search-input">Search canals</label>
-        <div class="flex gap-2">
-        <input
-          id="canal-search-input"
-          v-model="searchQuery"
-          class="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-[15px] text-inherit outline-none placeholder:text-slate-200/40 focus:border-sky-400/70 focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3"
-          type="search"
-          autocomplete="off"
-          spellcheck="false"
-          placeholder="Search by canal name or way id"
-          @keydown.enter.prevent="selectFirstResult"
-        />
-        <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[15px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="selectRandomCanal">Random</button>
-        <button v-if="searchQuery" type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[15px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="clearSearch">Clear</button>
-        </div>
+    <div
+      class="pointer-events-none absolute left-3 top-3 z-[1000] max-w-[24rem] sm:left-4 sm:top-4"
+      :class="isSearchOpen ? 'w-[calc(100vw-1.5rem)] sm:w-[24rem]' : 'w-auto'"
+    >
+      <div class="pointer-events-auto rounded-2xl border border-white/15 bg-slate-950/90 p-2 text-slate-50 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-4">
+        <button
+          v-if="!isSearchOpen"
+          type="button"
+          class="flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 text-[15px] font-semibold text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20"
+          :aria-expanded="isSearchOpen"
+          aria-controls="canal-search-panel"
+          @click="toggleSearch"
+        >
+          <span>Search</span>
+          <span v-if="searchQuery" class="max-w-32 truncate text-slate-200/70">{{ searchQuery }}</span>
+        </button>
 
-        <div class="mt-3 grid max-h-[38vh] gap-2 overflow-auto sm:max-h-[340px]">
-          <button
-            v-for="result in searchResults"
-            :key="result.groupKey"
-            type="button"
-            class="grid gap-1 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 text-left text-inherit transition hover:border-sky-400/55 hover:bg-sky-400/10 focus:outline-none focus:ring-4 focus:ring-sky-400/20"
-            @click="focusResult(result)"
-          >
-            <span class="text-[0.98rem] font-semibold leading-tight">{{ result.name || 'Unnamed canal' }}</span>
-            <span class="text-[0.78rem] text-slate-200/65">{{ formatResultMeta(result) }}</span>
-          </button>
+        <div id="canal-search-panel" :class="isSearchOpen ? 'block' : 'hidden'">
+          <div class="mb-2 flex items-center justify-between gap-3">
+            <label class="block text-[0.72rem] font-bold uppercase tracking-[0.12em] text-slate-200/70 sm:text-[0.78rem]" for="canal-search-input">Search canals</label>
+            <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2 text-[14px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20" @click="collapseSearch">Hide</button>
+          </div>
+          <div class="flex gap-2">
+            <input
+              id="canal-search-input"
+              ref="searchInput"
+              v-model="searchQuery"
+              class="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-[15px] text-inherit outline-none placeholder:text-slate-200/40 focus:border-sky-400/70 focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3"
+              type="search"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Search by canal name or way id"
+              @keydown.enter.prevent="selectFirstResult"
+            />
+            <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[15px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="selectRandomCanal">Random</button>
+            <button v-if="searchQuery" type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[15px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="clearSearch">Clear</button>
+          </div>
 
-          <p v-if="searchQuery && !searchResults.length" class="m-0 rounded-2xl border border-dashed border-white/10 px-3 py-2 text-[0.9rem] text-slate-200/65">No canals match this query.</p>
+          <div class="mt-3 grid max-h-[38vh] gap-2 overflow-auto sm:max-h-[340px]">
+            <button
+              v-for="result in searchResults"
+              :key="result.groupKey"
+              type="button"
+              class="grid gap-1 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 text-left text-inherit transition hover:border-sky-400/55 hover:bg-sky-400/10 focus:outline-none focus:ring-4 focus:ring-sky-400/20"
+              @click="focusResult(result)"
+            >
+              <span class="text-[0.98rem] font-semibold leading-tight">{{ result.name || 'Unnamed canal' }}</span>
+              <span class="text-[0.78rem] text-slate-200/65">{{ formatResultMeta(result) }}</span>
+            </button>
+
+            <p v-if="searchQuery && !searchResults.length" class="m-0 rounded-2xl border border-dashed border-white/10 px-3 py-2 text-[0.9rem] text-slate-200/65">No canals match this query.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -40,7 +61,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import {
   createMap,
   loadCanals,
@@ -55,7 +76,9 @@ import {
 } from '../scripts/leafletMap'
 
 const mapEl = ref(null)
+const searchInput = ref(null)
 const searchQuery = ref('')
+const isSearchOpen = ref(false)
 const canalsLayer = ref(null)
 const canalSearchIndex = ref(null)
 const selectedResult = ref(null)
@@ -78,6 +101,19 @@ const searchResults = computed(() => {
 function clearSearch() {
   clearSelectedResult()
   searchQuery.value = ''
+}
+
+async function toggleSearch() {
+  isSearchOpen.value = !isSearchOpen.value
+
+  if (isSearchOpen.value) {
+    await nextTick()
+    searchInput.value?.focus()
+  }
+}
+
+function collapseSearch() {
+  isSearchOpen.value = false
 }
 
 function focusResult(result) {
