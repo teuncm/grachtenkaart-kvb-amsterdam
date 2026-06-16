@@ -1,3 +1,4 @@
+import Fuse from "fuse.js";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-polylinedecorator";
@@ -6,19 +7,29 @@ const WATERWAY_ONEWAY_COLOR = "orange";
 const WATERWAY_ONEWAY_OUTLINE_COLOR = "white";
 const WATERWAY_FORBIDDEN_COLOR = "red";
 const WATERWAY_COLOR = "blue";
+const WATERWAY_SEARCH_HIGHLIGHT_COLOR = "white";
+const WATERWAY_SEARCH_HIGHLIGHT_WEIGHT = 2;
 const OBJECT_OPACITY = 1;
 const ONEWAY_ARROWS_MIN_ZOOM = 16;
 const ONEWAY_WATERWAYS = new Set(["Singelgracht", "Prinsengracht", "Grimburgwal", "Raamgracht"]);
 const FORBIDDEN_WATERWAYS = new Set([
-  "Van Noordtgracht",
-  "Le Mairegracht",
   "Beulingsloot",
   "Oudezijds Achterburgwal",
-  "Groenburgwal",
 ]);
 
 let canalsData = null;
 const assetBase = import.meta.env.BASE_URL || "/";
+const CANAL_SEARCH_OPTIONS = {
+  shouldSort: true,
+  includeScore: true,
+  ignoreLocation: true,
+  threshold: 0.35,
+  minMatchCharLength: 2,
+  keys: [
+    { name: "name", weight: 0.7 },
+    { name: "searchTerms", weight: 0.9 },
+  ],
+};
 const DOCK_ICON = L.divIcon({
   html: `
     <div
@@ -66,15 +77,14 @@ export function createMap(el) {
     doubleClickZoom: false,
   }).setView([52.3695, 4.899], 14.5);
 
+  const canalHighlightPane = map.createPane("canal-highlight-pane");
+  canalHighlightPane.style.zIndex = "650";
+  canalHighlightPane.style.pointerEvents = "none";
+
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors",
     className: "base-map-layer",
   }).addTo(map);
-
-  // Demo forbidden marker for fun — placed at initial center
-  L.marker(map.getCenter(), { icon: FORBIDDEN_ICON })
-    .addTo(map)
-    .bindPopup("Forbidden marker (demo)");
 
   return map;
 }
@@ -103,16 +113,7 @@ export function showUserLocation(map) {
 export async function addCanals(map, canalsData) {
   const layer = L.geoJSON(canalsData, {
     style: (feature) => {
-      const props = feature?.properties || {};
-      return {
-        color: isForbiddenWaterway(feature)
-          ? WATERWAY_FORBIDDEN_COLOR
-          : isOnewayWaterway(props)
-            ? WATERWAY_ONEWAY_COLOR
-            : WATERWAY_COLOR,
-        weight: 5,
-        opacity: OBJECT_OPACITY,
-      };
+      return getCanalStyle(feature);
     },
     onEachFeature: (feature, layer) => {
       const name = feature?.properties?.name || "";
@@ -144,10 +145,177 @@ export async function addCanals(map, canalsData) {
     },
   }).addTo(map);
 
+  layer.featureLayerByKey = buildCanalFeatureLayerLookup(layer);
+  layer.highlightOverlayByKey = new Map();
+  layer._highlightMap = map;
   map.fitBounds(layer.getBounds());
   addOnewayDirectionArrows(map, layer);
 
   return layer;
+}
+
+export function buildCanalSearchIndex(canalsGeoJson) {
+  const recordsByGroupKey = new Map();
+
+  for (const feature of canalsGeoJson?.features || []) {
+    const featureKey = getCanalFeatureKey(feature);
+
+    if (!featureKey) {
+      continue;
+    }
+
+    const name = feature?.properties?.name || "";
+    const normalizedName = normalizeWaterwayName(name);
+    const groupKey = normalizedName ? `name:${normalizedName}` : `feature:${featureKey}`;
+    const wayId = featureKey;
+    const numericWayId = wayId.startsWith("way/") ? wayId.slice(4) : wayId;
+
+    if (!recordsByGroupKey.has(groupKey)) {
+      recordsByGroupKey.set(groupKey, {
+        groupKey,
+        name,
+        featureKeys: [],
+        wayIds: [],
+        numericWayIds: [],
+      });
+    }
+
+    const record = recordsByGroupKey.get(groupKey);
+
+    record.featureKeys.push(featureKey);
+    record.wayIds.push(wayId);
+    record.numericWayIds.push(numericWayId);
+    if (!record.name && name) {
+      record.name = name;
+    }
+  }
+
+  const records = Array.from(recordsByGroupKey.values()).map((record) => ({
+    ...record,
+    normalizedName: normalizeWaterwayName(record.name),
+    normalizedSearchTerms: [record.name, ...record.wayIds, ...record.numericWayIds].filter(Boolean).map(normalizeSearchValue).join(" "),
+  }));
+
+  return {
+    fuse: new Fuse(records, CANAL_SEARCH_OPTIONS),
+    records,
+  };
+}
+
+export function searchCanals(searchIndex, query) {
+  if (!searchIndex) {
+    return [];
+  }
+
+  const normalizedQuery = normalizeSearchValue(query);
+
+  if (!normalizedQuery) {
+    return [];
+  }
+
+  const directMatches = searchIndex.records
+    .filter((record) => {
+      return (
+        record.normalizedName === normalizedQuery ||
+        record.normalizedName.includes(normalizedQuery) ||
+        record.normalizedSearchTerms.includes(normalizedQuery)
+      );
+    })
+    .sort((firstRecord, secondRecord) => scoreDirectMatch(secondRecord, normalizedQuery) - scoreDirectMatch(firstRecord, normalizedQuery));
+
+  if (directMatches.length > 0) {
+    return directMatches.slice(0, 8);
+  }
+
+  return searchIndex.fuse.search(normalizedQuery).slice(0, 8).map(({ item }) => item);
+}
+
+export function listCanals(searchIndex) {
+  if (!searchIndex?.records) {
+    return [];
+  }
+
+  return [...searchIndex.records]
+    .filter((record) => normalizeSearchValue(record.name).length > 0)
+    .sort((firstRecord, secondRecord) => {
+    const firstName = normalizeSearchValue(firstRecord.name);
+    const secondName = normalizeSearchValue(secondRecord.name);
+
+    if (firstName !== secondName) {
+      return firstName.localeCompare(secondName);
+    }
+
+    return firstRecord.groupKey.localeCompare(secondRecord.groupKey);
+    });
+}
+
+export function findCanalResultByFeature(searchIndex, feature) {
+  if (!searchIndex?.records) {
+    return null;
+  }
+
+  const featureKey = getCanalFeatureKey(feature);
+
+  if (!featureKey) {
+    return null;
+  }
+
+  const normalizedName = normalizeWaterwayName(feature?.properties?.name);
+  const groupKey = normalizedName ? `name:${normalizedName}` : `feature:${featureKey}`;
+  const groupedMatch = searchIndex.records.find((record) => record.groupKey === groupKey);
+
+  if (groupedMatch) {
+    return groupedMatch;
+  }
+
+  return searchIndex.records.find((record) => record.featureKeys.includes(featureKey)) || null;
+}
+
+export function focusCanalResult(map, canalsLayer, result) {
+  const targetLayers = getCanalLayersByKeys(canalsLayer, result?.featureKeys || []);
+
+  if (targetLayers.length === 0) {
+    return false;
+  }
+
+  const bounds = L.latLngBounds([]);
+
+  for (const targetLayer of targetLayers) {
+    bounds.extend(targetLayer.getBounds());
+  }
+
+  map.fitBounds(bounds, {
+    padding: [40, 40],
+    maxZoom: 17,
+  });
+
+  for (const targetLayer of targetLayers) {
+    if (typeof targetLayer.bringToFront === "function") {
+      targetLayer.bringToFront();
+    }
+
+    applyCanalHighlightStyle(canalsLayer, targetLayer, true);
+  }
+
+  if (typeof targetLayers[0].openPopup === "function") {
+    targetLayers[0].openPopup();
+  }
+
+  return true;
+}
+
+export function clearCanalResultHighlight(canalsLayer, result) {
+  if (!canalsLayer || !result) {
+    return;
+  }
+
+  for (const featureKey of result.featureKeys || []) {
+    const targetLayer = getCanalLayerByKey(canalsLayer, featureKey);
+
+    if (targetLayer) {
+      applyCanalHighlightStyle(canalsLayer, targetLayer, false);
+    }
+  }
 }
 
 export function addDock(map, lat, lon, popupText) {
@@ -276,6 +444,155 @@ function getFeatureSegmentMidpoint(feature) {
   }
 
   return null;
+}
+
+function getCanalStyle(feature) {
+  const props = feature?.properties || {};
+  const baseColor = isForbiddenWaterway(feature)
+    ? WATERWAY_FORBIDDEN_COLOR
+    : isOnewayWaterway(props)
+      ? WATERWAY_ONEWAY_COLOR
+      : WATERWAY_COLOR;
+
+  return {
+    color: baseColor,
+    weight: 5,
+    opacity: OBJECT_OPACITY,
+  };
+}
+
+function applyCanalHighlightStyle(canalsLayer, layer, highlight) {
+  if (!layer || !layer._map || !canalsLayer?.highlightOverlayByKey) {
+    return;
+  }
+
+  const featureKey = getCanalFeatureKey(layer.feature);
+
+  if (!featureKey) {
+    return;
+  }
+
+  const existingOverlay = canalsLayer.highlightOverlayByKey.get(featureKey);
+
+  if (existingOverlay) {
+    existingOverlay.remove();
+    canalsLayer.highlightOverlayByKey.delete(featureKey);
+  }
+
+  if (!highlight || !(layer instanceof L.Polyline)) {
+    return;
+  }
+
+  const overlay = L.polyline(layer.getLatLngs(), {
+    color: WATERWAY_SEARCH_HIGHLIGHT_COLOR,
+    weight: WATERWAY_SEARCH_HIGHLIGHT_WEIGHT,
+    opacity: OBJECT_OPACITY,
+    interactive: false,
+    bubblingMouseEvents: false,
+    pane: "canal-highlight-pane",
+  }).addTo(layer._map);
+
+  overlay._baseLayer = layer;
+  overlay._canalsLayer = canalsLayer;
+  overlay._highlightFeatureKey = featureKey;
+
+  const updateOverlayOnZoom = () => {
+    if (!overlay._map) return;
+    overlay.setLatLngs(layer.getLatLngs());
+    overlay.bringToFront();
+  };
+
+  layer._map.on("zoomend moveend", updateOverlayOnZoom);
+  overlay._zoomListener = updateOverlayOnZoom;
+
+  overlay.bringToFront();
+  canalsLayer.highlightOverlayByKey.set(featureKey, overlay);
+}
+
+function buildCanalFeatureLayerLookup(canalsLayer) {
+  const featureLayerByKey = new Map();
+
+  canalsLayer.eachLayer((featureLayer) => {
+    const featureKey = getCanalFeatureKey(featureLayer.feature);
+
+    if (featureKey) {
+      featureLayerByKey.set(featureKey, featureLayer);
+    }
+  });
+
+  return featureLayerByKey;
+}
+
+function getCanalLayerByKey(canalsLayer, featureKey) {
+  if (!canalsLayer || !featureKey) {
+    return null;
+  }
+
+  const featureLayerByKey = canalsLayer.featureLayerByKey;
+
+  if (featureLayerByKey?.has(featureKey)) {
+    return featureLayerByKey.get(featureKey);
+  }
+
+  let foundLayer = null;
+
+  canalsLayer.eachLayer((featureLayer) => {
+    if (foundLayer) {
+      return;
+    }
+
+    if (getCanalFeatureKey(featureLayer.feature) === featureKey) {
+      foundLayer = featureLayer;
+    }
+  });
+
+  return foundLayer;
+}
+
+function getCanalLayersByKeys(canalsLayer, featureKeys) {
+  const layers = [];
+
+  for (const featureKey of featureKeys) {
+    const layer = getCanalLayerByKey(canalsLayer, featureKey);
+
+    if (layer && !layers.includes(layer)) {
+      layers.push(layer);
+    }
+  }
+
+  return layers;
+}
+
+function getCanalFeatureKey(feature) {
+  return feature?.id || feature?.properties?.["@id"] || feature?.properties?.id || null;
+}
+
+function normalizeWaterwayName(name) {
+  return String(name || "").trim().toLowerCase();
+}
+
+function normalizeSearchValue(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function scoreDirectMatch(record, query) {
+  if (record.normalizedName === query) {
+    return 3;
+  }
+
+  if (record.normalizedName.startsWith(query)) {
+    return 2;
+  }
+
+  if (record.normalizedName.includes(query)) {
+    return 1;
+  }
+
+  if (record.normalizedSearchTerms.includes(query)) {
+    return 0.5;
+  }
+
+  return 0;
 }
 
 export function findWaterwayIntersectionPoint(canalsGeoJson, firstName, secondName) {

@@ -1,29 +1,169 @@
 <template>
-  <div ref="mapEl" class="map"></div>
+  <div class="map-shell">
+    <div class="pointer-events-none absolute left-3 top-3 z-[1000] w-[calc(100vw-1.5rem)] max-w-[24rem] sm:left-4 sm:top-4 sm:w-[24rem]">
+      <div class="pointer-events-auto rounded-2xl border border-white/15 bg-slate-950/90 p-3 text-slate-50 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-4">
+        <label class="mb-2 block text-[0.72rem] font-bold uppercase tracking-[0.12em] text-slate-200/70 sm:text-[0.78rem]" for="canal-search-input">Search canals</label>
+        <div class="flex gap-2">
+        <input
+          id="canal-search-input"
+          v-model="searchQuery"
+          class="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-[15px] text-inherit outline-none placeholder:text-slate-200/40 focus:border-sky-400/70 focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3"
+          type="search"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="Search by canal name or way id"
+          @keydown.enter.prevent="selectFirstResult"
+        />
+        <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[15px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="selectRandomCanal">Random</button>
+        <button v-if="searchQuery" type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[15px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="clearSearch">Clear</button>
+        </div>
+
+        <div class="mt-3 grid max-h-[38vh] gap-2 overflow-auto sm:max-h-[340px]">
+          <button
+            v-for="result in searchResults"
+            :key="result.groupKey"
+            type="button"
+            class="grid gap-1 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 text-left text-inherit transition hover:border-sky-400/55 hover:bg-sky-400/10 focus:outline-none focus:ring-4 focus:ring-sky-400/20"
+            @click="focusResult(result)"
+          >
+            <span class="text-[0.98rem] font-semibold leading-tight">{{ result.name || 'Unnamed canal' }}</span>
+            <span class="text-[0.78rem] text-slate-200/65">{{ formatResultMeta(result) }}</span>
+          </button>
+
+          <p v-if="searchQuery && !searchResults.length" class="m-0 rounded-2xl border border-dashed border-white/10 px-3 py-2 text-[0.9rem] text-slate-200/65">No canals match this query.</p>
+        </div>
+      </div>
+    </div>
+
+    <div ref="mapEl" class="map"></div>
+  </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import {
   createMap,
   loadCanals,
-  // addPolyline,
-  // showUserLocation,
   addCanals,
   addDock,
+  buildCanalSearchIndex,
+  findCanalResultByFeature,
+  listCanals,
+  searchCanals,
+  focusCanalResult,
+  clearCanalResultHighlight,
 } from '../scripts/leafletMap'
 
 const mapEl = ref(null)
+const searchQuery = ref('')
+const canalsLayer = ref(null)
+const canalSearchIndex = ref(null)
+const selectedResult = ref(null)
+let map = null
+
+const searchResults = computed(() => {
+  const query = searchQuery.value.trim()
+
+  if (!canalSearchIndex.value) {
+    return []
+  }
+
+  if (!query) {
+    return listCanals(canalSearchIndex.value)
+  }
+
+  return searchCanals(canalSearchIndex.value, query)
+})
+
+function clearSearch() {
+  clearSelectedResult()
+  searchQuery.value = ''
+}
+
+function focusResult(result) {
+  if (!map || !canalsLayer.value) return
+
+  clearSelectedResult()
+
+  const focused = focusCanalResult(map, canalsLayer.value, result)
+
+  if (focused) {
+    selectedResult.value = result
+  }
+
+  if (focused && result.name) {
+    searchQuery.value = result.name
+  }
+}
+
+function selectFirstResult() {
+  if (searchResults.value.length === 0) return
+
+  focusResult(searchResults.value[0])
+}
+
+function selectRandomCanal() {
+  if (!canalSearchIndex.value) return
+
+  const namedCanals = listCanals(canalSearchIndex.value)
+
+  if (namedCanals.length === 0) return
+
+  const randomCanal = namedCanals[Math.floor(Math.random() * namedCanals.length)]
+  focusResult(randomCanal)
+}
+
+function formatResultMeta(result) {
+  if (!result?.wayIds?.length) {
+    return ''
+  }
+
+  if (result.wayIds.length === 1) {
+    return result.wayIds[0]
+  }
+
+  return `${result.wayIds[0]} +${result.wayIds.length - 1} more`
+}
+
+function clearSelectedResult() {
+  if (!canalsLayer.value || !selectedResult.value) {
+    selectedResult.value = null
+    return
+  }
+
+  clearCanalResultHighlight(canalsLayer.value, selectedResult.value)
+  selectedResult.value = null
+}
+
+function bindCanalClickSelection() {
+  if (!canalsLayer.value || !canalSearchIndex.value) return
+
+  canalsLayer.value.eachLayer((featureLayer) => {
+    featureLayer.on('click', () => {
+      const result = findCanalResultByFeature(canalSearchIndex.value, featureLayer.feature)
+
+      if (!result) return
+
+      focusResult(result)
+    })
+  })
+}
+
+watch(searchQuery, (nextValue, previousValue) => {
+  if (previousValue && !nextValue) {
+    clearSelectedResult()
+  }
+})
 
 onMounted(async () => {
   if (!mapEl.value) return
 
-  const map = createMap(mapEl.value)
+  map = createMap(mapEl.value)
 
-  // addPolyline(map)
-  // showUserLocation(map)
   const canals = await loadCanals()
-  await addCanals(map, canals)
+  canalSearchIndex.value = buildCanalSearchIndex(canals)
+  canalsLayer.value = await addCanals(map, canals)
+  bindCanalClickSelection()
   addDock(map, 52.375226, 4.883823, "Anne Frank (AF)")
   addDock(map, 52.360915, 4.885641, "Rijksmuseum (Rijks)")
   addDock(map, 52.377867, 4.897888, "Centraal Station (CS)")
@@ -34,5 +174,14 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.map-shell {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
 
+.map {
+  height: 100%;
+  width: 100%;
+}
 </style>
