@@ -1,7 +1,7 @@
 <template>
   <div class="map-shell">
     <div
-      class="pointer-events-none absolute left-3 top-3 z-[1000] max-w-[24rem] sm:left-4 sm:top-4"
+      class="pointer-events-none absolute right-3 top-3 z-[1100] max-w-[24rem] sm:right-4 sm:top-4"
       :class="isSearchOpen ? 'w-[calc(100vw-1.5rem)] sm:w-[24rem]' : 'w-auto'"
     >
       <div class="pointer-events-auto rounded-2xl border border-white/15 bg-slate-950/90 p-2 text-slate-50 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-4">
@@ -219,5 +219,26 @@ onMounted(async () => {
 .map {
   height: 100%;
   width: 100%;
+}
+
+:deep(.leaflet-control-scale-line) {
+  border-color: rgb(15 23 42 / 0.75);
+  color: rgb(15 23 42);
+  font-weight: 700;
+}
+
+:deep(.vertical-scale-control) {
+  align-items: flex-end;
+  display: flex;
+  height: 104px;
+  margin-left: 10px;
+  pointer-events: none;
+}
+
+:deep(.vertical-scale-control__line) {
+  border-bottom: 2px solid rgb(15 23 42 / 0.75);
+  border-left: 2px solid rgb(15 23 42 / 0.75);
+  border-top: 2px solid rgb(15 23 42 / 0.75);
+  width: 9px;
 }
 </style>

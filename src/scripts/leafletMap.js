@@ -3,7 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-polylinedecorator";
 
-const WATERWAY_ONEWAY_COLOR = "orange";
+const WATERWAY_ONEWAY_COLOR = "MediumOrchid";
 const WATERWAY_ONEWAY_OUTLINE_COLOR = "white";
 const WATERWAY_FORBIDDEN_COLOR = "red";
 const WATERWAY_COLOR = "blue";
@@ -43,7 +43,7 @@ const DOCK_ICON = L.divIcon({
     ></div>
   `,
   className: "",
-  iconSize: [10, 10],
+  iconSize: [17, 17],
 });
 
 const HEADING_INDICATOR_ICON = DOCK_ICON;
@@ -72,8 +72,12 @@ export async function loadCanals() {
 
 export function createMap(el) {
   const map = L.map(el, {
-    minZoom: 13,
+    minZoom: 12,
     maxZoom: 18,
+    scrollWheelZoom: true,
+    touchZoom: true,
+    boxZoom: true,
+    keyboard: true,
     doubleClickZoom: false,
   }).setView([52.3695, 4.899], 14.5);
 
@@ -86,7 +90,64 @@ export function createMap(el) {
     className: "base-map-layer",
   }).addTo(map);
 
+  L.control.scale({
+    position: "bottomleft",
+    metric: true,
+    imperial: false,
+  }).addTo(map);
+  addVerticalScaleControl(map);
+  closePopupOnZoom(map);
+
   return map;
+}
+
+function addVerticalScaleControl(map) {
+  const maxHeightPx = 100;
+  let scaleLine = null;
+
+  const control = L.control({ position: "bottomleft" });
+
+  control.onAdd = () => {
+    const container = L.DomUtil.create("div", "leaflet-control vertical-scale-control");
+    scaleLine = L.DomUtil.create("div", "vertical-scale-control__line", container);
+    container.setAttribute("aria-hidden", "true");
+    return container;
+  };
+
+  control.addTo(map);
+
+  const updateScale = () => {
+    if (!scaleLine) return;
+
+    const center = map.getSize().divideBy(2);
+    const topPoint = center.subtract([0, maxHeightPx / 2]);
+    const bottomPoint = center.add([0, maxHeightPx / 2]);
+    const maxMeters = map.distance(map.containerPointToLatLng(topPoint), map.containerPointToLatLng(bottomPoint));
+    const scaleMeters = getRoundScaleDistance(maxMeters);
+    const scaleHeight = Math.max(12, Math.round((scaleMeters / maxMeters) * maxHeightPx));
+
+    scaleLine.style.height = `${scaleHeight}px`;
+  };
+
+  map.on("move zoom resize", updateScale);
+  updateScale();
+}
+
+function getRoundScaleDistance(maxMeters) {
+  const distancePower = Math.pow(10, Math.floor(Math.log10(maxMeters)));
+  const distanceRatio = maxMeters / distancePower;
+
+  if (distanceRatio >= 5) return 5 * distancePower;
+  if (distanceRatio >= 3) return 3 * distancePower;
+  if (distanceRatio >= 2) return 2 * distancePower;
+
+  return distancePower;
+}
+
+function closePopupOnZoom(map) {
+  map.on("zoomstart", () => {
+    map.closePopup();
+  });
 }
 
 export function showUserLocation(map) {
@@ -283,10 +344,7 @@ export function focusCanalResult(map, canalsLayer, result) {
     bounds.extend(targetLayer.getBounds());
   }
 
-  map.fitBounds(bounds, {
-    padding: [40, 40],
-    maxZoom: 17,
-  });
+  fitBoundsThenOpenPopup(map, bounds, targetLayers[0]);
 
   for (const targetLayer of targetLayers) {
     if (typeof targetLayer.bringToFront === "function") {
@@ -296,11 +354,36 @@ export function focusCanalResult(map, canalsLayer, result) {
     applyCanalHighlightStyle(canalsLayer, targetLayer, true);
   }
 
-  if (typeof targetLayers[0].openPopup === "function") {
-    targetLayers[0].openPopup();
+  return true;
+}
+
+function fitBoundsThenOpenPopup(map, bounds, layer) {
+  const padding = [40, 40];
+  const maxZoom = 17;
+  const targetZoom = Math.min(map.getBoundsZoom(bounds, false, padding), maxZoom);
+  const targetCenter = bounds.getCenter();
+  const currentCenter = map.getCenter();
+  const isAlreadyInView = map.getZoom() === targetZoom && currentCenter.distanceTo(targetCenter) < 0.5;
+  let opened = false;
+
+  const open = () => {
+    if (opened || !layer?._map || typeof layer.openPopup !== "function") return;
+
+    opened = true;
+    layer.openPopup();
+  };
+
+  if (isAlreadyInView) {
+    open();
+    return;
   }
 
-  return true;
+  map.once("moveend", open);
+  map.fitBounds(bounds, {
+    padding,
+    maxZoom,
+  });
+  globalThis.setTimeout(open, 500);
 }
 
 export function clearCanalResultHighlight(canalsLayer, result) {

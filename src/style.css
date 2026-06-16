@@ -19,7 +19,8 @@ body {
 }
 
 .base-map-layer {
-  filter: invert(1) hue-rotate(180deg) contrast(1) brightness(1);
+  /* filter: invert(1) hue-rotate(180deg) contrast(1) brightness(1); */
+  filter: saturate(1.2) contrast(0.7) brightness(1.1);
 }
 
 /* Outline forbidden SVG markers (using the marker's class set by Leaflet) */
