@@ -1,7 +1,7 @@
 <template>
   <div class="map-shell">
     <div
-      class="pointer-events-none absolute right-3 top-3 z-[1100] max-w-[24rem] sm:right-4 sm:top-4"
+      class="search-control pointer-events-none absolute z-[1100] max-w-[24rem]"
       :class="isSearchOpen ? 'w-[calc(100vw-1.5rem)] sm:w-[24rem]' : 'w-auto'"
     >
       <div class="pointer-events-auto rounded-2xl border border-white/15 bg-slate-950/90 p-2 text-slate-50 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-4">
@@ -214,11 +214,40 @@ onMounted(async () => {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
 }
 
 .map {
   height: 100%;
   width: 100%;
+}
+
+.search-control {
+  right: calc(0.75rem + env(safe-area-inset-right));
+  top: calc(0.75rem + env(safe-area-inset-top));
+}
+
+:deep(.leaflet-top) {
+  top: env(safe-area-inset-top);
+}
+
+:deep(.leaflet-bottom) {
+  bottom: env(safe-area-inset-bottom);
+}
+
+:deep(.leaflet-left) {
+  left: env(safe-area-inset-left);
+}
+
+:deep(.leaflet-right) {
+  right: env(safe-area-inset-right);
+}
+
+@media (min-width: 640px) {
+  .search-control {
+    right: calc(1rem + env(safe-area-inset-right));
+    top: calc(1rem + env(safe-area-inset-top));
+  }
 }
 
 :deep(.leaflet-control-scale-line) {

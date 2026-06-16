@@ -97,6 +97,7 @@ export function createMap(el) {
   }).addTo(map);
   addVerticalScaleControl(map);
   closePopupOnZoom(map);
+  invalidateMapSizeOnViewportResize(map);
 
   return map;
 }
@@ -148,6 +149,21 @@ function closePopupOnZoom(map) {
   map.on("zoomstart", () => {
     map.closePopup();
   });
+}
+
+function invalidateMapSizeOnViewportResize(map) {
+  let resizeFrame = null;
+  const invalidateSize = () => {
+    if (resizeFrame !== null) return;
+
+    resizeFrame = globalThis.requestAnimationFrame(() => {
+      resizeFrame = null;
+      map.invalidateSize();
+    });
+  };
+
+  globalThis.addEventListener?.("resize", invalidateSize);
+  globalThis.visualViewport?.addEventListener("resize", invalidateSize);
 }
 
 export function showUserLocation(map) {
