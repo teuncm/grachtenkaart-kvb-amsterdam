@@ -23,7 +23,7 @@ const CANAL_SEARCH_OPTIONS = {
   shouldSort: true,
   includeScore: true,
   ignoreLocation: true,
-  threshold: 0.35,
+  threshold: 0.25,
   minMatchCharLength: 2,
   keys: [
     { name: "name", weight: 0.7 },
@@ -90,27 +90,26 @@ export function createMap(el) {
     className: "base-map-layer",
   }).addTo(map);
 
-  L.control.scale({
-    position: "bottomleft",
-    metric: true,
-    imperial: false,
-  }).addTo(map);
-  addVerticalScaleControl(map);
+  addCombinedScaleControl(map);
   closePopupOnZoom(map);
   invalidateMapSizeOnViewportResize(map);
 
   return map;
 }
 
-function addVerticalScaleControl(map) {
-  const maxHeightPx = 100;
-  let scaleLine = null;
+function addCombinedScaleControl(map) {
+  const maxScalePx = 100;
+  let horizontalLine = null;
+  let verticalLine = null;
+  let label = null;
 
   const control = L.control({ position: "bottomleft" });
 
   control.onAdd = () => {
-    const container = L.DomUtil.create("div", "leaflet-control vertical-scale-control");
-    scaleLine = L.DomUtil.create("div", "vertical-scale-control__line", container);
+    const container = L.DomUtil.create("div", "leaflet-control combined-scale-control");
+    label = L.DomUtil.create("div", "combined-scale-control__label", container);
+    horizontalLine = L.DomUtil.create("div", "combined-scale-control__horizontal", container);
+    verticalLine = L.DomUtil.create("div", "combined-scale-control__vertical", container);
     container.setAttribute("aria-hidden", "true");
     return container;
   };
@@ -118,16 +117,22 @@ function addVerticalScaleControl(map) {
   control.addTo(map);
 
   const updateScale = () => {
-    if (!scaleLine) return;
+    if (!horizontalLine || !verticalLine || !label) return;
 
     const center = map.getSize().divideBy(2);
-    const topPoint = center.subtract([0, maxHeightPx / 2]);
-    const bottomPoint = center.add([0, maxHeightPx / 2]);
-    const maxMeters = map.distance(map.containerPointToLatLng(topPoint), map.containerPointToLatLng(bottomPoint));
-    const scaleMeters = getRoundScaleDistance(maxMeters);
-    const scaleHeight = Math.max(12, Math.round((scaleMeters / maxMeters) * maxHeightPx));
+    const leftPoint = center.subtract([maxScalePx / 2, 0]);
+    const rightPoint = center.add([maxScalePx / 2, 0]);
+    const topPoint = center.subtract([0, maxScalePx / 2]);
+    const bottomPoint = center.add([0, maxScalePx / 2]);
+    const maxHorizontalMeters = map.distance(map.containerPointToLatLng(leftPoint), map.containerPointToLatLng(rightPoint));
+    const maxVerticalMeters = map.distance(map.containerPointToLatLng(topPoint), map.containerPointToLatLng(bottomPoint));
+    const scaleMeters = getRoundScaleDistance(Math.min(maxHorizontalMeters, maxVerticalMeters));
+    const scaleWidth = Math.max(12, Math.round((scaleMeters / maxHorizontalMeters) * maxScalePx));
+    const scaleHeight = Math.max(12, Math.round((scaleMeters / maxVerticalMeters) * maxScalePx));
 
-    scaleLine.style.height = `${scaleHeight}px`;
+    label.textContent = formatScaleDistance(scaleMeters);
+    horizontalLine.style.width = `${scaleWidth}px`;
+    verticalLine.style.height = `${scaleHeight}px`;
   };
 
   map.on("move zoom resize", updateScale);
@@ -143,6 +148,14 @@ function getRoundScaleDistance(maxMeters) {
   if (distanceRatio >= 2) return 2 * distancePower;
 
   return distancePower;
+}
+
+function formatScaleDistance(meters) {
+  if (meters >= 1000) {
+    return `${meters / 1000} km`;
+  }
+
+  return `${meters} m`;
 }
 
 function closePopupOnZoom(map) {
@@ -201,7 +214,8 @@ export async function addCanals(map, canalsData) {
           ? `<div style="margin-top:6px;"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${startPoint.lat},${startPoint.lng}`)}" target="_blank" rel="noopener noreferrer">Google Maps<span aria-hidden="true">&#x2197;</span></a></div>`
           : "";
 
-        layer.bindPopup(
+        setCanalPopupContent(
+          layer,
           `<div>${escapeHtml(name)}</div><div style="margin-top:6px;"><a href="${searchUrl}" target="_blank" rel="noopener noreferrer">Google Search<span aria-hidden="true">&#x2197;</span></a></div>${mapsLinkHtml}`
         );
         return;
@@ -210,13 +224,14 @@ export async function addCanals(map, canalsData) {
       const startPoint = getFeatureSegmentMidpoint(feature);
 
       if (!startPoint) {
-        layer.bindPopup(`<div>(naamloos)</div>`);
+        setCanalPopupContent(layer, `<div>(naamloos)</div>`);
         return;
       }
 
       const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${startPoint.lat},${startPoint.lng}`)}`;
 
-      layer.bindPopup(
+      setCanalPopupContent(
+        layer,
         `<div>(naamloos)</div><div style="margin-top:6px;"><a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer">Google Maps<span aria-hidden="true">&#x2197;</span></a></div>`
       );
     },
@@ -299,11 +314,14 @@ export function searchCanals(searchIndex, query) {
     })
     .sort((firstRecord, secondRecord) => scoreDirectMatch(secondRecord, normalizedQuery) - scoreDirectMatch(firstRecord, normalizedQuery));
 
-  if (directMatches.length > 0) {
-    return directMatches.slice(0, 8);
+  const fuzzyMatches = searchIndex.fuse.search(normalizedQuery).map(({ item }) => item);
+  const matchesByGroupKey = new Map();
+
+  for (const match of [...directMatches, ...fuzzyMatches]) {
+    matchesByGroupKey.set(match.groupKey, match);
   }
 
-  return searchIndex.fuse.search(normalizedQuery).slice(0, 8).map(({ item }) => item);
+  return Array.from(matchesByGroupKey.values()).slice(0, 8);
 }
 
 export function listCanals(searchIndex) {
@@ -380,13 +398,14 @@ function fitBoundsThenOpenPopup(map, bounds, layer) {
   const targetCenter = bounds.getCenter();
   const currentCenter = map.getCenter();
   const isAlreadyInView = map.getZoom() === targetZoom && currentCenter.distanceTo(targetCenter) < 0.5;
-  let opened = false;
+  const openRequestId = (map._canalPopupOpenRequestId || 0) + 1;
+
+  map._canalPopupOpenRequestId = openRequestId;
 
   const open = () => {
-    if (opened || !layer?._map || typeof layer.openPopup !== "function") return;
+    if (map._canalPopupOpenRequestId !== openRequestId || !layer?._map) return;
 
-    opened = true;
-    layer.openPopup();
+    openCanalPopup(map, layer);
   };
 
   if (isAlreadyInView) {
@@ -399,7 +418,21 @@ function fitBoundsThenOpenPopup(map, bounds, layer) {
     padding,
     maxZoom,
   });
-  globalThis.setTimeout(open, 500);
+}
+
+function setCanalPopupContent(layer, html) {
+  layer.canalPopupHtml = html;
+}
+
+function openCanalPopup(map, layer) {
+  if (!map || !layer?.canalPopupHtml || typeof layer.getBounds !== "function") {
+    return;
+  }
+
+  L.popup()
+    .setLatLng(layer.getBounds().getCenter())
+    .setContent(layer.canalPopupHtml)
+    .openOn(map);
 }
 
 export function clearCanalResultHighlight(canalsLayer, result) {
@@ -723,13 +756,13 @@ function isForbiddenWaterway(feature) {
 function isOnewayWaterway(properties) {
   const name = properties?.name;
 
-  return properties?.oneway === "yes";
+  // return properties?.oneway === "yes";
 
-  // if (name === "Singelgracht") {
-  //   return properties?.oneway === "yes";
-  // }
+  if (name === "Singelgracht") {
+    return properties?.oneway === "yes";
+  }
 
-  // return ONEWAY_WATERWAYS.has(name);
+  return ONEWAY_WATERWAYS.has(name);
 }
 
 function getFeatureLines(feature) {
