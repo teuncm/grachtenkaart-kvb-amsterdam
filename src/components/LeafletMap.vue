@@ -8,7 +8,7 @@
         <div v-if="!isSearchOpen" class="flex gap-2">
           <button
             type="button"
-            class="flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 text-[14px] font-semibold text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20"
+            class="flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 text-[14px] font-semibold text-inherit transition hover:bg-white/15 focus:outline focus:outline-1 focus:outline-offset-1 focus:outline-sky-300/70"
             :aria-expanded="isSearchOpen"
             aria-controls="canal-search-panel"
             @click="toggleSearch"
@@ -16,7 +16,7 @@
             <span>Search</span>
             <span v-if="searchQuery" class="max-w-32 truncate text-slate-200/70">{{ searchQuery }}</span>
           </button>
-          <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20" :class="{ 'random-button-flash': isRandomButtonFlashing }" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
+          <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline focus:outline-1 focus:outline-offset-1 focus:outline-sky-300/70" :class="{ 'random-button-flash': isRandomButtonFlashing }" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
             <Dices class="h-6 w-6" :class="{ 'random-icon-spin': isRandomButtonFlashing }" aria-hidden="true" />
           </button>
         </div>
@@ -24,32 +24,36 @@
         <div id="canal-search-panel" :class="isSearchOpen ? 'block' : 'hidden'">
           <div class="mb-2 flex items-center justify-between gap-3">
             <label class="block text-[0.68rem] font-bold uppercase tracking-[0.12em] text-slate-200/70 sm:text-[0.72rem]" for="canal-search-input">Search canals</label>
-            <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2 text-[13px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20" @click="collapseSearch">Hide</button>
+            <div class="flex gap-2">
+              <button type="button" class="rounded-xl border border-white/10 px-3 py-2 text-inherit transition hover:bg-white/15 focus:outline focus:outline-1 focus:outline-offset-1 focus:outline-sky-300/70" :class="isUserLocationActive ? 'bg-white/30' : 'bg-white/10'" :aria-label="locationButtonLabel" :title="locationButtonLabel" @click="activateUserLocation">
+                <component :is="isUserLocationActive ? LocateFixed : Locate" class="h-5 w-5" aria-hidden="true" />
+              </button>
+              <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2 text-[13px] font-medium text-inherit transition hover:bg-white/15 focus:outline focus:outline-1 focus:outline-offset-1 focus:outline-sky-300/70" @click="collapseSearch">Hide</button>
+            </div>
           </div>
           <div class="flex gap-2">
             <input
               id="canal-search-input"
               ref="searchInput"
               v-model="searchQuery"
-              class="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-[14px] text-inherit outline-none placeholder:text-slate-200/40 focus:border-sky-400/70 focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3"
+              class="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-[14px] text-inherit outline-none placeholder:text-slate-200/40 focus:border-sky-300/70 focus:outline focus:outline-1 focus:outline-offset-1 focus:outline-sky-300/70 sm:px-3.5 sm:py-3"
               type="search"
               autocomplete="off"
               spellcheck="false"
               placeholder="Search by canal name or way id"
               @keydown.enter.prevent="selectFirstResult"
             />
-            <button v-if="searchQuery" type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[14px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="clearSearch">Clear</button>
-            <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" :class="{ 'random-button-flash': isRandomButtonFlashing }" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
+            <button v-if="searchQuery" type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[14px] font-medium text-inherit transition hover:bg-white/15 focus:outline focus:outline-1 focus:outline-offset-1 focus:outline-sky-300/70 sm:px-3.5 sm:py-3" @click="clearSearch">Clear</button>
+            <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline focus:outline-1 focus:outline-offset-1 focus:outline-sky-300/70 sm:px-3.5 sm:py-3" :class="{ 'random-button-flash': isRandomButtonFlashing }" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
               <Dices class="h-6 w-6" :class="{ 'random-icon-spin': isRandomButtonFlashing }" aria-hidden="true" />
             </button>
           </div>
-
           <div class="mt-3 grid max-h-[38vh] gap-2 overflow-auto sm:max-h-[340px]">
             <button
               v-for="result in searchResults"
               :key="result.groupKey"
               type="button"
-              class="grid gap-1 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 text-left text-inherit transition hover:border-sky-400/55 hover:bg-sky-400/10 focus:outline-none focus:ring-4 focus:ring-sky-400/20"
+              class="grid gap-1 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 text-left text-inherit transition hover:border-sky-400/55 hover:bg-sky-400/10 focus:outline focus:outline-1 focus:outline-offset-1 focus:outline-sky-300/70"
               @click="focusResult(result)"
             >
               <span class="text-[0.9rem] font-semibold leading-tight">{{ result.name || 'Unnamed canal' }}</span>
@@ -68,7 +72,7 @@
 
 <script setup>
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
-import { Dices } from '@lucide/vue'
+import { Dices, Locate, LocateFixed } from '@lucide/vue'
 import {
   createMap,
   loadCanals,
@@ -80,6 +84,7 @@ import {
   searchCanals,
   focusCanalResult,
   clearCanalResultHighlight,
+  showUserLocation,
 } from '../scripts/leafletMap'
 
 const mapEl = ref(null)
@@ -90,8 +95,10 @@ const canalsLayer = ref(null)
 const canalSearchIndex = ref(null)
 const selectedResult = ref(null)
 const isRandomButtonFlashing = ref(false)
+const isUserLocationActive = ref(false)
 let map = null
 let randomButtonFlashTimeout = null
+let userLocationController = null
 
 const searchResults = computed(() => {
   const query = searchQuery.value.trim()
@@ -105,6 +112,14 @@ const searchResults = computed(() => {
   }
 
   return searchCanals(canalSearchIndex.value, query)
+})
+
+const locationButtonLabel = computed(() => {
+  if (isUserLocationActive.value) {
+    return 'Hide live location'
+  }
+
+  return 'Show live location'
 })
 
 function clearSearch() {
@@ -158,6 +173,26 @@ function selectRandomCanal() {
 
   const randomCanal = namedCanals[Math.floor(Math.random() * namedCanals.length)]
   focusResult(randomCanal)
+}
+
+function activateUserLocation() {
+  if (!map) return
+
+  if (isUserLocationActive.value) {
+    userLocationController?.stop()
+    userLocationController = null
+    isUserLocationActive.value = false
+    return
+  }
+
+  isUserLocationActive.value = true
+  userLocationController = showUserLocation(map, {
+    onError: (error) => {
+      userLocationController?.stop()
+      userLocationController = null
+      isUserLocationActive.value = false
+    },
+  })
 }
 
 function flashRandomButton() {
@@ -242,6 +277,8 @@ onUnmounted(() => {
   if (randomButtonFlashTimeout !== null) {
     clearTimeout(randomButtonFlashTimeout)
   }
+
+  userLocationController?.stop()
 })
 </script>
 

@@ -46,6 +46,23 @@ const DOCK_ICON = L.divIcon({
   className: "",
   iconSize: [17, 17],
 });
+const USER_LOCATION_ICON = L.divIcon({
+  html: `
+    <div
+      style="
+        width: 100%;
+        height: 100%;
+        background: #0ea5e9;
+        border: 2px solid white;
+        border-radius: 50%;
+        box-shadow: 0 0 0 5px rgb(14 165 233 / 0.22), 0 2px 12px rgb(15 23 42 / 0.35);
+      "
+    ></div>
+  `,
+  className: "",
+  iconSize: [18, 18],
+  iconAnchor: [9, 9],
+});
 
 const HEADING_INDICATOR_ICON = DOCK_ICON;
 
@@ -181,25 +198,71 @@ function invalidateMapSizeOnViewportResize(map) {
   globalThis.visualViewport?.addEventListener("resize", invalidateSize);
 }
 
-export function showUserLocation(map) {
+export function showUserLocation(map, options = {}) {
   let marker = null;
+  let accuracyCircle = null;
+  let hasCenteredOnLocation = false;
 
   map.locate({
     watch: true,
     enableHighAccuracy: true,
   });
 
-  map.on("locationfound", (e) => {
+  const handleLocationFound = (e) => {
     if (!marker) {
-      marker = L.marker(e.latlng).addTo(map);
+      marker = L.marker(e.latlng, {
+        icon: USER_LOCATION_ICON,
+        zIndexOffset: 1000,
+      })
+        .addTo(map)
+        .bindPopup("Your live location");
     } else {
       marker.setLatLng(e.latlng);
     }
-  });
 
-  map.on("locationerror", (e) => {
+    if (options.centerOnFirstLocation !== false && !hasCenteredOnLocation) {
+      hasCenteredOnLocation = true;
+      map.setView(e.latlng, Math.max(map.getZoom(), 16));
+      marker.openPopup();
+    }
+
+    if (!accuracyCircle) {
+      accuracyCircle = L.circle(e.latlng, {
+        color: "#0ea5e9",
+        fillColor: "#0ea5e9",
+        fillOpacity: 0.12,
+        interactive: false,
+        opacity: 0.45,
+        radius: e.accuracy || 0,
+        weight: 1,
+      }).addTo(map);
+    } else {
+      accuracyCircle.setLatLng(e.latlng);
+      accuracyCircle.setRadius(e.accuracy || 0);
+    }
+
+    options.onFound?.(e);
+  };
+
+  const handleLocationError = (e) => {
     console.error(e.message);
-  });
+    options.onError?.(e);
+  };
+
+  map.on("locationfound", handleLocationFound);
+  map.on("locationerror", handleLocationError);
+
+  return {
+    stop() {
+      map.stopLocate();
+      map.off("locationfound", handleLocationFound);
+      map.off("locationerror", handleLocationError);
+      marker?.remove();
+      accuracyCircle?.remove();
+      marker = null;
+      accuracyCircle = null;
+    },
+  };
 }
 
 export async function addCanals(map, canalsData) {
