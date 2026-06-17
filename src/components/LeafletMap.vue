@@ -38,10 +38,10 @@
               placeholder="Search by canal name or way id"
               @keydown.enter.prevent="selectFirstResult"
             />
+            <button v-if="searchQuery" type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[14px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="clearSearch">Clear</button>
             <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" :class="{ 'random-button-flash': isRandomButtonFlashing }" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
               <Dices class="h-6 w-6" :class="{ 'random-icon-spin': isRandomButtonFlashing }" aria-hidden="true" />
             </button>
-            <button v-if="searchQuery" type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[14px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="clearSearch">Clear</button>
           </div>
 
           <div class="mt-3 grid max-h-[38vh] gap-2 overflow-auto sm:max-h-[340px]">
