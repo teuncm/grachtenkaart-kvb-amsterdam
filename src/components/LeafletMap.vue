@@ -339,6 +339,12 @@ onUnmounted(() => {
 :deep(.combined-scale-control) {
   color: rgb(15 23 42);
   display: grid;
+  grid-template-areas:
+    "label label"
+    "vertical ."
+    "corner horizontal";
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
   justify-items: start;
   margin-left: 10px;
   margin-bottom: 10px;
@@ -346,6 +352,7 @@ onUnmounted(() => {
 }
 
 :deep(.combined-scale-control__label) {
+  grid-area: label;
   font-size: 11px;
   font-weight: 700;
   line-height: 1;
@@ -358,16 +365,27 @@ onUnmounted(() => {
 }
 
 :deep(.combined-scale-control__horizontal) {
+  align-self: end;
   border-bottom: 2px solid rgb(15 23 42 / 0.75);
-  border-left: 2px solid rgb(15 23 42 / 0.75);
   border-right: 2px solid rgb(15 23 42 / 0.75);
+  grid-area: horizontal;
   height: 7px;
 }
 
 :deep(.combined-scale-control__vertical) {
-  border-bottom: 2px solid rgb(15 23 42 / 0.75);
+  align-self: end;
   border-left: 2px solid rgb(15 23 42 / 0.75);
   border-top: 2px solid rgb(15 23 42 / 0.75);
+  grid-area: vertical;
+  justify-self: start;
+  width: 7px;
+}
+
+:deep(.combined-scale-control__corner) {
+  border-bottom: 2px solid rgb(15 23 42 / 0.75);
+  border-left: 2px solid rgb(15 23 42 / 0.75);
+  grid-area: corner;
+  height: 7px;
   width: 7px;
 }
 </style>

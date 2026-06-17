@@ -109,8 +109,9 @@ function addCombinedScaleControl(map) {
   control.onAdd = () => {
     const container = L.DomUtil.create("div", "leaflet-control combined-scale-control");
     label = L.DomUtil.create("div", "combined-scale-control__label", container);
-    horizontalLine = L.DomUtil.create("div", "combined-scale-control__horizontal", container);
     verticalLine = L.DomUtil.create("div", "combined-scale-control__vertical", container);
+    L.DomUtil.create("div", "combined-scale-control__corner", container);
+    horizontalLine = L.DomUtil.create("div", "combined-scale-control__horizontal", container);
     container.setAttribute("aria-hidden", "true");
     return container;
   };
