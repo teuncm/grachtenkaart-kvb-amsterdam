@@ -106,6 +106,7 @@ export function createMap(el) {
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors",
     className: "base-map-layer",
+    maxZoom: 19,
   }).addTo(map);
 
   addCombinedScaleControl(map);
@@ -408,6 +409,26 @@ export function listCanals(searchIndex) {
     });
 }
 
+export function listRandomCanals(searchIndex) {
+  if (!searchIndex?.records) {
+    return [];
+  }
+
+  const canalsByName = new Map();
+
+  for (const record of searchIndex.records) {
+    const normalizedName = normalizeWaterwayName(record.name);
+
+    if (!normalizedName || canalsByName.has(normalizedName)) {
+      continue;
+    }
+
+    canalsByName.set(normalizedName, record);
+  }
+
+  return Array.from(canalsByName.values());
+}
+
 export function findCanalResultByFeature(searchIndex, feature) {
   if (!searchIndex?.records) {
     return null;
@@ -458,7 +479,7 @@ export function focusCanalResult(map, canalsLayer, result) {
 
 function fitBoundsThenOpenPopup(map, bounds, layer) {
   const padding = [40, 40];
-  const maxZoom = 17;
+  const maxZoom = 16;
   const targetZoom = Math.min(map.getBoundsZoom(bounds, false, padding), maxZoom);
   const targetCenter = bounds.getCenter();
   const currentCenter = map.getCenter();

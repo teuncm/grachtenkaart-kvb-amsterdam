@@ -81,6 +81,7 @@ import {
   buildCanalSearchIndex,
   findCanalResultByFeature,
   listCanals,
+  listRandomCanals,
   searchCanals,
   focusCanalResult,
   clearCanalResultHighlight,
@@ -165,7 +166,7 @@ function selectFirstResult() {
 function selectRandomCanal() {
   if (!canalSearchIndex.value) return
 
-  const namedCanals = listCanals(canalSearchIndex.value)
+  const namedCanals = listRandomCanals(canalSearchIndex.value)
 
   if (namedCanals.length === 0) return
 
