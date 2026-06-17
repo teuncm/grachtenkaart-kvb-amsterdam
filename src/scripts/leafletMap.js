@@ -90,8 +90,8 @@ export async function loadCanals() {
 
 export function createMap(el) {
   const map = L.map(el, {
-    minZoom: 12,
-    maxZoom: 18,
+    minZoom: 11,
+    maxZoom: 19,
     scrollWheelZoom: true,
     touchZoom: true,
     boxZoom: true,
