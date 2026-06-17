@@ -210,6 +210,7 @@ onMounted(async () => {
   addDock(map, 52.375226, 4.883823, "Anne Frank (AF)")
   addDock(map, 52.360915, 4.885641, "Rijksmuseum (Rijks)")
   addDock(map, 52.377867, 4.897888, "Centraal Station (CS)")
+  addDock(map, 52.3692092, 4.8998606, "Zwanenburgwal (ZWA)")
   addDock(map, 52.376064, 4.905688, "Sea Palace (SP)")
   addDock(map, 52.3829488, 4.8594078, "Staverno")
   addDock(map, 52.335300, 4.917648, "E-Harbour (E-H)")
