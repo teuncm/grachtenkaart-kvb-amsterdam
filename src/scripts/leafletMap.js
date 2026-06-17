@@ -6,9 +6,10 @@ import "leaflet-polylinedecorator";
 const WATERWAY_ONEWAY_COLOR = "MediumOrchid";
 const WATERWAY_ONEWAY_OUTLINE_COLOR = "white";
 const WATERWAY_FORBIDDEN_COLOR = "red";
-const WATERWAY_COLOR = "blue";
+const WATERWAY_COLOR = "DodgerBlue";
 const WATERWAY_SEARCH_HIGHLIGHT_COLOR = "white";
 const WATERWAY_SEARCH_HIGHLIGHT_WEIGHT = 2;
+const WATERWAY_OPACITY = 0.8;
 const OBJECT_OPACITY = 1;
 const ONEWAY_ARROWS_MIN_ZOOM = 16;
 const ONEWAY_WATERWAYS = new Set(["Singelgracht", "Prinsengracht", "Grimburgwal", "Raamgracht"]);
@@ -588,7 +589,7 @@ function getCanalStyle(feature) {
   return {
     color: baseColor,
     weight: 5,
-    opacity: OBJECT_OPACITY,
+    opacity: WATERWAY_OPACITY,
   };
 }
 
