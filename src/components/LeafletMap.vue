@@ -16,8 +16,8 @@
             <span>Search</span>
             <span v-if="searchQuery" class="max-w-32 truncate text-slate-200/70">{{ searchQuery }}</span>
           </button>
-          <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
-            <Dices class="h-6 w-6" aria-hidden="true" />
+          <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20" :class="{ 'random-button-flash': isRandomButtonFlashing }" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
+            <Dices class="h-6 w-6" :class="{ 'random-icon-spin': isRandomButtonFlashing }" aria-hidden="true" />
           </button>
         </div>
 
@@ -38,8 +38,8 @@
               placeholder="Search by canal name or way id"
               @keydown.enter.prevent="selectFirstResult"
             />
-            <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
-              <Dices class="h-6 w-6" aria-hidden="true" />
+            <button type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" :class="{ 'random-button-flash': isRandomButtonFlashing }" aria-label="Random canal" title="Random canal" @click="selectRandomCanal">
+              <Dices class="h-6 w-6" :class="{ 'random-icon-spin': isRandomButtonFlashing }" aria-hidden="true" />
             </button>
             <button v-if="searchQuery" type="button" class="rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-[14px] font-medium text-inherit transition hover:bg-white/15 focus:outline-none focus:ring-4 focus:ring-sky-400/20 sm:px-3.5 sm:py-3" @click="clearSearch">Clear</button>
           </div>
@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { Dices } from '@lucide/vue'
 import {
   createMap,
@@ -89,7 +89,9 @@ const isSearchOpen = ref(false)
 const canalsLayer = ref(null)
 const canalSearchIndex = ref(null)
 const selectedResult = ref(null)
+const isRandomButtonFlashing = ref(false)
 let map = null
+let randomButtonFlashTimeout = null
 
 const searchResults = computed(() => {
   const query = searchQuery.value.trim()
@@ -152,8 +154,26 @@ function selectRandomCanal() {
 
   if (namedCanals.length === 0) return
 
+  flashRandomButton()
+
   const randomCanal = namedCanals[Math.floor(Math.random() * namedCanals.length)]
   focusResult(randomCanal)
+}
+
+function flashRandomButton() {
+  if (randomButtonFlashTimeout !== null) {
+    clearTimeout(randomButtonFlashTimeout)
+  }
+
+  isRandomButtonFlashing.value = false
+
+  requestAnimationFrame(() => {
+    isRandomButtonFlashing.value = true
+    randomButtonFlashTimeout = setTimeout(() => {
+      isRandomButtonFlashing.value = false
+      randomButtonFlashTimeout = null
+    }, 420)
+  })
 }
 
 function formatResultMeta(result) {
@@ -217,6 +237,12 @@ onMounted(async () => {
   addDock(map, 52.3415982, 4.8864876, "Strandzuid")
   addDock(map, 52.3433485, 4.8525659, "Olympisch Stadion")
 })
+
+onUnmounted(() => {
+  if (randomButtonFlashTimeout !== null) {
+    clearTimeout(randomButtonFlashTimeout)
+  }
+})
 </script>
 
 <style scoped>
@@ -255,6 +281,52 @@ onMounted(async () => {
 
 .search-control button {
   cursor: pointer;
+}
+
+.random-button-flash {
+  animation: random-button-flash 420ms ease-out;
+}
+
+.random-icon-spin {
+  animation: random-icon-spin 420ms ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes random-button-flash {
+  0% {
+    background: rgb(255 255 255 / 0.36);
+    box-shadow:
+      0 0 0 0 rgb(255 255 255 / 0.60),
+      0 0 18px rgb(255 255 255 / 0.68);
+  }
+
+  45% {
+    background: rgb(255 255 255 / 0.44);
+    box-shadow:
+      0 0 0 6px rgb(255 255 255 / 0),
+      0 0 26px rgb(255 255 255 / 0.58);
+  }
+
+  100% {
+    background: rgb(255 255 255 / 0.10);
+    box-shadow:
+      0 0 0 0 rgb(255 255 255 / 0),
+      0 0 0 rgb(255 255 255 / 0);
+  }
+}
+
+@keyframes random-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(20deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @media (min-width: 640px) {
